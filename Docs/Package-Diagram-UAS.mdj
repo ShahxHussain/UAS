@@ -1,0 +1,23 @@
+{
+	"_type": "Project",
+	"_id": "AAAAAAFF+h6SjaM2Hec=",
+	"name": "Uas",
+	"ownedElements": [
+		{
+			"_type": "UMLModel",
+			"_id": "AAAAAAGIasnOB7VdBHg=",
+			"_parent": {
+				"$ref": "AAAAAAFF+h6SjaM2Hec="
+			},
+			"name": "Analysis Modeling"
+		},
+		{
+			"_type": "UMLModel",
+			"_id": "AAAAAAGIasqjvLVifmw=",
+			"_parent": {
+				"$ref": "AAAAAAFF+h6SjaM2Hec="
+			},
+			"name": "Design Modeling"
+		}
+	]
+}
