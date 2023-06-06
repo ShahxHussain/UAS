@@ -13,17 +13,20 @@ import java.sql.Time;
 public class UASController {
     
 //Mahad Wajid (Fa21-bse-057 ) Use Case: Enter Personal Info 
-    public Student enterpersonalinfo(String firstname , String lastname , String email, String phoneno , String Address ){
+    public static Student enterpersonalinfo(String firstname , String lastname , String email, String phoneno , String Address ){
+        Student student=new Student(firstname,lastname,email,phoneno,Address);        
         
         return Student;
     }
     
-    public Announcement createAnnouncement(String title , String content, String author ,Date date){
+    public static Announcement createAnnouncement(String title , String content, String author ,Date date){
+        Announcment announcement=new Announcement(title ,content , author , date);
         
         return Announcement;
     }
     
-    public Schedule scheduletest(String testname, Date date, Time time ,String location){
+    public static Schedule scheduletest(String testname, Date date, Time time ,String location){
+        Schedule schedule=new Schedule(testname,date ,time,location);
         return Schedule ;
     }
     
