@@ -33,5 +33,17 @@ public class UASController {
 //    ====================================================================
     
     
+    //SYED SHAH HUSSAIN BADSHAH (FA21-BSE-172)
+    public void admissionConfirmation(int AdmissionID){
+        
+        Admission admission =new Admission(admissionID);
+        System.out.println("USE CASE: CONFRIM ADMISSION");
+    }
+     
     
+    public void notificationController( String notificationType, int admissionID String message ){
+        
+        System.out.println("USE CASE: NOTIFY STUDENTS");
+    }
+    //=====================================================================
 }
