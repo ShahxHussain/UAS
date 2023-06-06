@@ -23,3 +23,5 @@
 hs_err_pid*
 *.png
 /Docs/PackageDiagramCode/nbproject/private/
+/Docs/PackageDiagramCode/build/
+/Docs/PackageDiagramCode/dist/
