@@ -52,9 +52,9 @@
 														"$ref": "AAAAAAGIjz7qXJRUh7M="
 													},
 													"font": "Arial;13;0",
-													"left": 32.72998046875,
+													"left": 30.55908203125,
 													"top": 13,
-													"width": 115.9052734375,
+													"width": 102.791015625,
 													"height": 13,
 													"text": "SequenceDiagram1"
 												},
@@ -67,7 +67,7 @@
 													"font": "Arial;13;1",
 													"left": 13,
 													"top": 13,
-													"width": 14.72998046875,
+													"width": 12.55908203125,
 													"height": 13,
 													"text": "sd"
 												}
@@ -542,9 +542,9 @@
 														"$ref": "AAAAAAGIkRRpXlNhJT8="
 													},
 													"font": "Arial;13;0",
-													"left": 48.72998046875,
+													"left": 46.55908203125,
 													"top": 13,
-													"width": 272.69873046875,
+													"width": 249.03466796875,
 													"height": 13,
 													"text": "SSD Personal info (fa21-bse-057 Mahad wajid)"
 												},
@@ -557,7 +557,7 @@
 													"font": "Arial;13;1",
 													"left": 29,
 													"top": 13,
-													"width": 14.72998046875,
+													"width": 12.55908203125,
 													"height": 13,
 													"text": "sd"
 												}
@@ -1495,9 +1495,9 @@
 														"$ref": "AAAAAAGIkSWTbXheBFQ="
 													},
 													"font": "Arial;13;0",
-													"left": 40.72998046875,
+													"left": 38.55908203125,
 													"top": 13,
-													"width": 262.5869140625,
+													"width": 239.09423828125,
 													"height": 13,
 													"text": "Scheduling Test (Fa21-bse-057 Mahad wajid)"
 												},
@@ -1510,7 +1510,7 @@
 													"font": "Arial;13;1",
 													"left": 21,
 													"top": 13,
-													"width": 14.72998046875,
+													"width": 12.55908203125,
 													"height": 13,
 													"text": "sd"
 												}
@@ -2447,9 +2447,9 @@
 														"$ref": "AAAAAAGIkTAeSUcK9xo="
 													},
 													"font": "Arial;13;0",
-													"left": 32.72998046875,
+													"left": 30.55908203125,
 													"top": 13,
-													"width": 115.9052734375,
+													"width": 102.791015625,
 													"height": 13,
 													"text": "SequenceDiagram1"
 												},
@@ -2462,7 +2462,7 @@
 													"font": "Arial;13;1",
 													"left": 13,
 													"top": 13,
-													"width": 14.72998046875,
+													"width": 12.55908203125,
 													"height": 13,
 													"text": "sd"
 												}
@@ -3374,9 +3374,9 @@
 														"$ref": "AAAAAAGIkavazEcFV6c="
 													},
 													"font": "Arial;13;0",
-													"left": 56.72998046875,
+													"left": 54.55908203125,
 													"top": 13,
-													"width": 55.91357421875,
+													"width": 50.79736328125,
 													"height": 13,
 													"text": "Take Test"
 												},
@@ -3389,7 +3389,7 @@
 													"font": "Arial;13;1",
 													"left": 37,
 													"top": 13,
-													"width": 14.72998046875,
+													"width": 12.55908203125,
 													"height": 13,
 													"text": "sd"
 												}
@@ -4713,9 +4713,9 @@
 														"$ref": "AAAAAAGIkcHJzUjbQ0s="
 													},
 													"font": "Arial;13;0",
-													"left": 32.72998046875,
+													"left": 30.55908203125,
 													"top": 13,
-													"width": 75.42626953125,
+													"width": 69.96728515625,
 													"height": 13,
 													"text": "Print Challan"
 												},
@@ -4728,7 +4728,7 @@
 													"font": "Arial;13;1",
 													"left": 13,
 													"top": 13,
-													"width": 14.72998046875,
+													"width": 12.55908203125,
 													"height": 13,
 													"text": "sd"
 												}
@@ -6400,92 +6400,93 @@
 										},
 										{
 											"_type": "UMLSeqMessageView",
-											"_id": "AAAAAAGIkdaWhUq4YH8=",
+											"_id": "AAAAAAGIkhyOOgmS9t0=",
 											"_parent": {
 												"$ref": "AAAAAAGIkdHQPEnhZas="
 											},
 											"model": {
-												"$ref": "AAAAAAGIkdaWhUq3lmY="
+												"$ref": "AAAAAAGIkhyOOQmRMCQ="
 											},
 											"subViews": [
 												{
 													"_type": "EdgeLabelView",
-													"_id": "AAAAAAGIkdaWhUq5Abw=",
+													"_id": "AAAAAAGIkhyOOgmTso4=",
 													"_parent": {
-														"$ref": "AAAAAAGIkdaWhUq4YH8="
+														"$ref": "AAAAAAGIkhyOOgmS9t0="
 													},
 													"model": {
-														"$ref": "AAAAAAGIkdaWhUq3lmY="
+														"$ref": "AAAAAAGIkhyOOQmRMCQ="
 													},
 													"font": "Arial;13;0",
-													"left": 26,
-													"top": 324,
-													"width": 681.43359375,
+													"left": 81,
+													"top": 326,
+													"width": 564.33837890625,
 													"height": 13,
 													"alpha": 1.5707963267948966,
 													"distance": 10,
 													"hostEdge": {
-														"$ref": "AAAAAAGIkdaWhUq4YH8="
+														"$ref": "AAAAAAGIkhyOOgmS9t0="
 													},
 													"edgePosition": 1,
-													"text": "4 : The system prompts to enter the information account number, challan number, branch number."
+													"text": "4 : The system prompts to enter the information(account number, challan number, branch number)"
 												},
 												{
 													"_type": "EdgeLabelView",
-													"_id": "AAAAAAGIkdaWhUq6cSo=",
+													"_id": "AAAAAAGIkhyOOgmUIFE=",
 													"_parent": {
-														"$ref": "AAAAAAGIkdaWhUq4YH8="
+														"$ref": "AAAAAAGIkhyOOgmS9t0="
 													},
 													"model": {
-														"$ref": "AAAAAAGIkdaWhUq3lmY="
+														"$ref": "AAAAAAGIkhyOOQmRMCQ="
 													},
 													"visible": false,
 													"font": "Arial;13;0",
-													"left": 366,
-													"top": 339,
+													"left": 363,
+													"top": 341,
 													"height": 13,
 													"alpha": 1.5707963267948966,
 													"distance": 25,
 													"hostEdge": {
-														"$ref": "AAAAAAGIkdaWhUq4YH8="
+														"$ref": "AAAAAAGIkhyOOgmS9t0="
 													},
 													"edgePosition": 1
 												},
 												{
 													"_type": "EdgeLabelView",
-													"_id": "AAAAAAGIkdaWhUq7uTw=",
+													"_id": "AAAAAAGIkhyOOgmV65o=",
 													"_parent": {
-														"$ref": "AAAAAAGIkdaWhUq4YH8="
+														"$ref": "AAAAAAGIkhyOOgmS9t0="
 													},
 													"model": {
-														"$ref": "AAAAAAGIkdaWhUq3lmY="
+														"$ref": "AAAAAAGIkhyOOQmRMCQ="
 													},
 													"visible": false,
 													"font": "Arial;13;0",
-													"left": 367,
-													"top": 304,
+													"left": 364,
+													"top": 306,
 													"height": 13,
 													"alpha": -1.5707963267948966,
 													"distance": 10,
 													"hostEdge": {
-														"$ref": "AAAAAAGIkdaWhUq4YH8="
+														"$ref": "AAAAAAGIkhyOOgmS9t0="
 													},
 													"edgePosition": 1
 												},
 												{
 													"_type": "UMLActivationView",
-													"_id": "AAAAAAGIkdaWhUq8zXo=",
+													"_id": "AAAAAAGIkhyOOgmW9hg=",
 													"_parent": {
-														"$ref": "AAAAAAGIkdaWhUq4YH8="
+														"$ref": "AAAAAAGIkhyOOgmS9t0="
 													},
 													"model": {
-														"$ref": "AAAAAAGIkdaWhUq3lmY="
+														"$ref": "AAAAAAGIkhyOOQmRMCQ="
 													},
+													"visible": false,
 													"font": "Arial;13;0",
-													"left": 69,
-													"top": 320,
+													"left": 76,
+													"top": 322,
 													"width": 14,
-													"height": 29
+													"height": 25
 												}
 											],
 											"font": "Arial;13;0",
@@ -6495,18 +6496,18 @@
 											"tail": {
 												"$ref": "AAAAAAGIkdIl/koVohw="
 											},
-											"points": "652:320;82:320",
+											"points": "652:322;76:322",
 											"nameLabel": {
-												"$ref": "AAAAAAGIkdaWhUq5Abw="
+												"$ref": "AAAAAAGIkhyOOgmTso4="
 											},
 											"stereotypeLabel": {
-												"$ref": "AAAAAAGIkdaWhUq6cSo="
+												"$ref": "AAAAAAGIkhyOOgmUIFE="
 											},
 											"propertyLabel": {
-												"$ref": "AAAAAAGIkdaWhUq7uTw="
+												"$ref": "AAAAAAGIkhyOOgmV65o="
 											},
 											"activation": {
-												"$ref": "AAAAAAGIkdaWhUq8zXo="
+												"$ref": "AAAAAAGIkhyOOgmW9hg="
 											}
 										},
 										{
@@ -7004,18 +7005,19 @@
 								},
 								{
 									"_type": "UMLMessage",
-									"_id": "AAAAAAGIkdaWhUq3lmY=",
+									"_id": "AAAAAAGIkhyOOQmRMCQ=",
 									"_parent": {
 										"$ref": "AAAAAAGIkdHQPEng7h8="
 									},
-									"name": "The system prompts to enter the information account number, challan number, branch number.",
+									"name": "The system prompts to enter the information",
 									"source": {
 										"$ref": "AAAAAAGIkdIl/koOarc="
 									},
 									"target": {
 										"$ref": "AAAAAAGIkdIRJEnvEhA="
 									},
-									"messageSort": "asynchCall"
+									"messageSort": "reply",
+									"arguments": "account number, challan number, branch number"
 								},
 								{
 									"_type": "UMLMessage",
@@ -7133,7 +7135,8 @@
 							"_parent": {
 								"$ref": "AAAAAAGIkavay0cCAcI="
 							},
-							"name": "Role3"
+							"name": "Role3",
+							"type": ""
 						},
 						{
 							"_type": "UMLAttribute",
@@ -7152,7 +7155,8 @@
 							"_parent": {
 								"$ref": "AAAAAAGIkavay0cCAcI="
 							},
-							"name": "Role5"
+							"name": "Role5",
+							"type": ""
 						},
 						{
 							"_type": "UMLAttribute",
@@ -7171,7 +7175,8 @@
 							"_parent": {
 								"$ref": "AAAAAAGIkavay0cCAcI="
 							},
-							"name": "Role7"
+							"name": "Role7",
+							"type": ""
 						}
 					]
 				}
