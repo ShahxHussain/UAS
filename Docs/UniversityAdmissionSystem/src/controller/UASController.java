@@ -72,3 +72,31 @@ public class UASController {
     }
 }
 
+
+ //soman ahmad (FA21-BSE-150) 
+    //Use Case: logout
+    
+    public void logout()
+    {
+        logout log = new Logout(); 
+    }
+    
+    //Use Case: enter academic info
+    
+    public void EnterAcademicInfo(String institutionname, int totalmarks, int obtainmarks, double percentage, int session)
+    {
+        EnterAcademicInfo academicinfo = new EnterAcademicInfo(institutionname,totalmarks, obtainmarks,percentage,session);
+    }
+
+ //Use Case: verify document
+
+public void VerifyDocument()
+    {
+        VerifyDocument verify = new VerifyDocument(); 
+    }
+
+
+
+
+    
+
