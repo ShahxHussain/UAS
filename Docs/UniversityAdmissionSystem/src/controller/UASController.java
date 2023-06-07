@@ -8,8 +8,10 @@ package controller;
  *
  * @author S K
  */
+import java.io.File;
 import java.util.Date;
 import java.sql.Time;
+import java.time.Duration;
 public class UASController {
     
 //Mahad Wajid (Fa21-bse-057 ) Use Case: Enter Personal Info 
@@ -46,5 +48,27 @@ public class UASController {
         System.out.println("USE CASE: NOTIFY STUDENTS");
     }
     //=====================================================================
+    
+        //ABDUL AZIZ (FA21-BSE-058) 
+    //Use Case: Take Test
+    
+    public void TakeTest(int studentId, Duration testDuration, int testId, Time testTime)
+    {
+        TakeTest test = new TakeTest(studentId,Duration,testId,testTime); 
+    }
+    
+    //Use Case: Print Challan
+    
+    public void PrintChallan(int studentId, String challanNO)
+    {
+        PrintChallan challan = new PrintChallan(studentId, challanNo);
+    }
+    
+    //Use Case: Make Payment
+    
+    public void MakePayment(int studentId, String accountNo, String branchNo, String paymentType, double ammount, String challanNo, File challanImage)
+    {
+        MakePayement payment = new MakePayment(studentId,accountNo,branchNo,PaymentType,ammount,challanNo,ChallanImage);
+    }
 }
 
