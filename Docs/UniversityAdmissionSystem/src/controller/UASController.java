@@ -96,7 +96,44 @@ public void VerifyDocument()
     }
 
 
+//use csae:publish merit list by (hamza badar fa21-bse-055)
+
+    public void addStudentToMeritList(Student student) {
+        meritList.add(student);
+    }
+
+    public void removeStudentFromMeritList(Student student) {
+        meritList.remove(student);
+    }
+
+    public List<Student> getMeritList() {
+        return meritList;
+    }
+   public void addStudentToWaitingList(Student student) {
+        waitingList.add(student);
+    }
+
+    public void removeStudentFromWaitingList(Student student) {
+        waitingList.remove(student);
+    }
+
+    public List<Student> getWaitingList() {
+        return waitingList;
+    }
 
 
     
+//use csae:check merit list by (hamza badar fa21-bse-055)
+
+    public void addStudentToMeritList(String studentName) {
+        meritList.add(studentName);
+    }
+
+    public boolean isStudentInMeritList(String studentName) {
+        return meritList.contains(studentName);
+    }
+
+    public int getRankInMeritList(String studentName) {
+        return meritList.indexOf(studentName) + 1;
+    }
 

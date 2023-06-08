@@ -191,9 +191,53 @@ public static boolean validateApplicant(Applicant applicant) { // As there is no
     
     
     //======================================================================================================
-    
-    
+      
+//        ####################################################################
+//    usecase:check merit list by(hamza badar fa21-bse-055)
+        
+        public static boolean isValidStudentName(String studentName) {
+            // Add your validation logic here
+            // For example, check if the student name meets certain criteria
+            return !studentName.isEmpty();
+        }
+
+        public static boolean isStudentInMeritList(String studentName, AdmissionController admissionController) {
+            return admissionController.getMeritList().contains(studentName);
+        }
+
+        public static int getRankInMeritList(String studentName, AdmissionController admissionController) {
+            return admissionController.getMeritList().indexOf(studentName) + 1;
+        }
+    }
+//        ####################################################################
+
+     //    usecase:publish merit list by(hamza badar fa21-bse-055) 
+
+
+          public boolean isValidMeritList(List<String> meritList) {
+
+
+        if (meritList.isEmpty()) {
+            return false; // Merit list is empty
+        }
+
+        // Check if the merit list has duplicate student names
+        for (int i = 0; i < meritList.size() - 1; i++) {
+            String studentName = meritList.get(i);
+            for (int j = i + 1; j < meritList.size(); j++) {
+                if (studentName.equals(meritList.get(j))) {
+                    return false; // Merit list has duplicate student names
+                }
+            }
+        }
+
+       
+        return true;
 }
+//          ##########################################################
+}
+    
+
 
 
 
