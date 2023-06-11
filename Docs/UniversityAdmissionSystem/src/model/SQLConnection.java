@@ -20,7 +20,7 @@ public class SQLConnection {
           
             Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
             connection = DriverManager.getConnection(URL, USERNAME, PASSWORD);
-         
+            System.out.println("aaaa " + connection);
             connection.close();
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
