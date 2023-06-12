@@ -10,7 +10,7 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class SQLConnection {
-    public static final String URL = "jdbc:sqlserver://localhost:1433;databaseName=universityadmissionsystem";
+    public static final String URL = "jdbc:sqlserver://localhost:1433;databaseName=universityadmissionsystem;trustServerCertificate=true;";
     public static final String USERNAME = "sa";
     public static final String PASSWORD = "123456";
 
