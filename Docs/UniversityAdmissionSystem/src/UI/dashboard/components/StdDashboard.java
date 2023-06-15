@@ -5,7 +5,7 @@
 package UI.dashboard.components;
 
 import UI.ui.compnents.Checkmeritlist;
-
+import UI.ui.compnents.Applyforadmission;
 /**
  *
  * @author S K
@@ -60,6 +60,11 @@ public class StdDashboard extends javax.swing.JFrame {
         jButton3.setText("Check admission Criteria");
 
         jButton1.setText("Apply for Admission");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jButton4.setText("Apply for Test");
 
@@ -188,6 +193,21 @@ public class StdDashboard extends javax.swing.JFrame {
     // Close the current interface
     this.dispose();
     }//GEN-LAST:event_jButton5ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        
+                // Create an instance of ApplyForAdmission
+        Applyforadmission applyForAdmission = new Applyforadmission();
+
+        // Make the ApplyForAdmission interface visible
+        applyForAdmission.setVisible(true);
+
+        // Close the current interface
+        this.dispose();
+        
+        
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
