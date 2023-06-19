@@ -19,7 +19,7 @@
 
 <h2>Project Documentation</h2>
 
-<p>Please refer to the <a href="[Thesis.doc](https://github.com/ShahxHussain/UAS/blob/main/Docs/AAS%20Thesis.docx)">Thesis.doc</a> file included in this repository for detailed documentation on the project. The document contains screenshots of prototypes, use cases, fully-documented use cases, system design (SD), system sequence diagrams (SSD), entity-relationship diagrams (ERD), domain model, and other related information pertaining to object-oriented analysis and design.</p>
+<p>Please refer to the AAS Thesis.doc file in the Docs folder included in this repository for detailed documentation on the project. The document contains screenshots of prototypes, use cases, fully-documented use cases, system design (SD), system sequence diagrams (SSD), entity-relationship diagrams (ERD), domain model, and other related information pertaining to object-oriented analysis and design.</p>
 
 <h2>Project Members</h2>
 
