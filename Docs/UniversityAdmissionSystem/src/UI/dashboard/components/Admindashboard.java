@@ -103,9 +103,9 @@ public class Admindashboard extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel2)
-                .addGap(29, 29, 29)
+                .addGap(41, 41, 41)
                 .addComponent(jButton5)
-                .addGap(24, 24, 24)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jButton7)
                 .addGap(18, 18, 18)
                 .addComponent(jButton6)
@@ -172,6 +172,7 @@ public class Admindashboard extends javax.swing.JFrame {
 
     private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
         // TODO add your handling code here:
+        
     }//GEN-LAST:event_jButton8ActionPerformed
 
     /**
