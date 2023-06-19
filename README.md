@@ -37,7 +37,7 @@
 
 <p>To clone this repository, use the following command:</p>
 
-<pre><code>git clone [repository-url]</code></pre>
+<pre><code>git clone https://github.com/ShahxHussain/UAS.git</code></pre>
 
 
 <h2>License</h2>
