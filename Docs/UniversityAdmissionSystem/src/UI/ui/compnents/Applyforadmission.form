@@ -25,7 +25,7 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
               <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="104" max="32767" attributes="0"/>
+              <EmptySpace max="32767" attributes="0"/>
               <Component id="jTextField1" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="85" max="-2" attributes="0"/>
           </Group>
@@ -64,6 +64,7 @@
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Component id="jButton3" min="-2" pref="150" max="-2" attributes="0"/>
                               <Component id="jButton2" min="-2" pref="150" max="-2" attributes="0"/>
+                              <Component id="jButton4" alignment="0" min="-2" pref="150" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                   </Group>
@@ -76,11 +77,13 @@
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="jButton1" min="-2" pref="31" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="102" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="104" max="-2" attributes="0"/>
                   <Component id="jButton2" min="-2" pref="43" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="48" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="52" max="-2" attributes="0"/>
+                  <Component id="jButton4" min="-2" pref="43" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="46" max="-2" attributes="0"/>
                   <Component id="jButton3" min="-2" pref="43" max="-2" attributes="0"/>
-                  <EmptySpace pref="238" max="32767" attributes="0"/>
+                  <EmptySpace pref="143" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -93,7 +96,7 @@
         </Component>
         <Component class="javax.swing.JButton" name="jButton2">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Enter Personal Info"/>
+            <Property name="text" type="java.lang.String" value="Dashbord"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JButton" name="jButton3">
@@ -104,10 +107,21 @@
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton3ActionPerformed"/>
           </Events>
         </Component>
+        <Component class="javax.swing.JButton" name="jButton4">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Enter Personal Info"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton4ActionPerformed"/>
+          </Events>
+        </Component>
       </SubComponents>
     </Container>
     <Component class="javax.swing.JTextField" name="jTextField1">
       <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Segoe UI" size="24" style="1"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="University Admission system"/>
       </Properties>
     </Component>
