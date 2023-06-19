@@ -8,19 +8,15 @@
 // *
 // * @author S K
 // */
-//import java.io.File;
-//import java.util.Date;
-//import java.sql.Time;
-//import java.time.Duration;
+//
 //public class UASController {
 //    
 ////Mahad Wajid (Fa21-bse-057 ) Use Case: Enter Personal Info 
-//    public static Student enterpersonalinfo(String firstname , String lastname , String email, String phoneno , String Address ){
-//        Student student=new Student(firstname,lastname,email,phoneno,Address);        
+//    public void Enterpersonalinfo( ){
+//              
 //        
-//        return Student;
 //    }
-//    
+    
 //    public static Announcement createAnnouncement(String title , String content, String author ,Date date){
 //        Announcment announcement=new Announcement(title ,content , author , date);
 //        
@@ -31,7 +27,7 @@
 //        Schedule schedule=new Schedule(testname,date ,time,location);
 //        return Schedule ;
 //    }
-//    
+    
 ////    ====================================================================
 //    
 //    
