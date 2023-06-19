@@ -6,7 +6,7 @@ package UI.dashboard.components;
 
 import UI.ui.compnents.Checkmeritlist;
 import UI.ui.compnents.Applyforadmission;
-
+import UI.ui.compnents.TakeTest;
 
 /**
  *
@@ -71,6 +71,11 @@ public class StdDashboard extends javax.swing.JFrame {
         jButton4.setText("Apply for Test");
 
         jButton9.setText("Take Test");
+        jButton9.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton9ActionPerformed(evt);
+            }
+        });
 
         jButton5.setText("Check Merit List");
         jButton5.addActionListener(new java.awt.event.ActionListener() {
@@ -210,6 +215,13 @@ public class StdDashboard extends javax.swing.JFrame {
         
         
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
+        // TODO add your handling code here:
+        TakeTest test = new TakeTest();
+        test.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jButton9ActionPerformed
 
     /**
      * @param args the command line arguments
