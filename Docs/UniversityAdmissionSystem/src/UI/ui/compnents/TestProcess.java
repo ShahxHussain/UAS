@@ -4,6 +4,12 @@
  */
 package UI.ui.compnents;
 
+import UI.dashboard.components.StdDashboard;
+import common.testDTO;
+import controller.UASController;
+import java.util.ArrayList;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Abdul aziz
@@ -13,8 +19,12 @@ public class TestProcess extends javax.swing.JFrame {
     /**
      * Creates new form TestProcess
      */
+    ArrayList<testDTO> questionList;
+    
+    UASController objController;
     public TestProcess() {
         initComponents();
+        loadTestData();
     }
 
     /**
@@ -170,6 +180,7 @@ public class TestProcess extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
+        nextQuestion(1);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
@@ -220,4 +231,96 @@ public class TestProcess extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextArea jTextArea1;
     // End of variables declaration//GEN-END:variables
+
+    private void loadTestData() {
+    // Retrieve test questions from the database randomly
+    questionList = objController.getTest();
+
+    // Check if there are questions available
+    if (!questionList.isEmpty()) {
+        // Get the first question from the list
+        testDTO currentQuestion = questionList.get(0);
+
+        // Display the question in the GUI
+        jTextArea1.setText(currentQuestion.getQuestionText());
+
+        // Display the options in the radio buttons
+        jRadioButton1.setText(currentQuestion.getOption1());
+        jRadioButton2.setText(currentQuestion.getOption2());
+        jRadioButton3.setText(currentQuestion.getOption3());
+        jRadioButton4.setText(currentQuestion.getOption4());
+
+        // Display the test time in the GUI
+        jLabel1.setText(currentQuestion.getTestTime());
+    } else {
+        // If no questions are available, display a message to the user
+        JOptionPane.showMessageDialog(this, "No questions available.");
+    }
 }
+    
+    private void nextQuestion(int questionIndex) {
+    // Check if there are more questions in the test
+    if (questionIndex < questionList.size() - 1) {
+        questionIndex++; // Move to the next question
+
+        // Get the next question from the list
+        testDTO nextQuestion = questionList.get(questionIndex);
+
+        // Display the next question, options, and time in the GUI components
+        jTextArea1.setText(nextQuestion.getQuestionText());
+
+        ArrayList<String> options = nextQuestion.getOptions();
+        if (options.size() >= 1) {
+            jRadioButton1.setText(options.get(0));
+        } else {
+            jRadioButton1.setText("");
+        }
+        if (options.size() >= 2) {
+            jRadioButton2.setText(options.get(1));
+        } else {
+            jRadioButton2.setText("");
+        }
+        if (options.size() >= 3) {
+            jRadioButton3.setText(options.get(2));
+        } else {
+            jRadioButton3.setText("");
+        }
+        if (options.size() >= 4) {
+            jRadioButton4.setText(options.get(3));
+        } else {
+            jRadioButton4.setText("");
+        }
+        jLabel1.setText(nextQuestion.getTestTime());
+    } else {
+        // If there are no more questions, end the test
+        endTest();
+    }
+}
+    private void endTest() {
+    // Calculate and display the test result
+    int totalQuestions = questionList.size();
+    int correctAnswers = 0;
+//        correctAnswers = test.getCorrectAnswersCount();
+    int incorrectAnswers = totalQuestions - correctAnswers;
+    double score = (double) correctAnswers / totalQuestions * 100;
+
+    String resultMessage = "Test completed!\n"
+            + "Total Questions: " + totalQuestions + "\n"
+            + "Correct Answers: " + correctAnswers + "\n"
+            + "Incorrect Answers: " + incorrectAnswers + "\n"
+            + "Score: " + score + "%";
+
+    JOptionPane.showMessageDialog(this, resultMessage);
+
+    // Close the test window
+    dispose();
+
+    // Redirect to the dashboard
+    StdDashboard dashboard = new StdDashboard();
+    dashboard.setVisible(true);
+}
+
+
+
+}
+

@@ -1,15 +1,25 @@
-///*
-// * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
-// * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
-// */
-//package controller;
-//
-///**
-// *
-// * @author S K
-// */
-//
-//public class UASController {
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
+package controller;
+
+import common.testDTO;
+import java.util.ArrayList;
+import model.SQLConnection;
+
+/**
+ *
+ * @author S K
+ */
+
+public class UASController {
+    SQLConnection objDAL;
+    
+    public UASController()
+    {
+        
+    }
 //    
 ////Mahad Wajid (Fa21-bse-057 ) Use Case: Enter Personal Info 
 //    public void Enterpersonalinfo( ){
@@ -48,10 +58,9 @@
 //        //ABDUL AZIZ (FA21-BSE-058) 
 //    //Use Case: Take Test
 //    
-//    public void TakeTest(int studentId, Duration testDuration, int testId, Time testTime)
-//    {
-//        TakeTest test = new TakeTest(studentId,Duration,testId,testTime); 
-//    }
+public ArrayList<testDTO> getTest() {
+    return objDAL.getTestQuestions();
+}
 //    
 //    //Use Case: Print Challan
 //    
@@ -131,5 +140,5 @@
 //
 //    public int getRankInMeritList(String studentName) {
 //        return meritList.indexOf(studentName) + 1;
-//    }
+    }
 //###################################################################
