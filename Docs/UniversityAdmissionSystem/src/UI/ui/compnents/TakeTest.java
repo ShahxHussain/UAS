@@ -4,6 +4,9 @@
  */
 package UI.ui.compnents;
 
+import java.awt.Color;
+import javax.swing.JOptionPane;
+import UI.ui.compnents.TestProcess;
 /**
  *
  * @author Abdul aziz
@@ -15,6 +18,11 @@ public class TakeTest extends javax.swing.JFrame {
      */
     public TakeTest() {
         initComponents();
+        jCheckBox1.addItemListener(new java.awt.event.ItemListener() {
+        public void itemStateChanged(java.awt.event.ItemEvent evt) {
+            jCheckBox1ItemStateChanged(evt);
+        }
+    });
     }
 
     /**
@@ -50,10 +58,10 @@ public class TakeTest extends javax.swing.JFrame {
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(179, 179, 179)
                 .addComponent(jLabel2)
-                .addGap(151, 151, 151))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -74,12 +82,17 @@ public class TakeTest extends javax.swing.JFrame {
 
         jCheckBox1.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         jCheckBox1.setForeground(new java.awt.Color(0, 243, 5));
-        jCheckBox1.setText("I have raed and understand the instructions, and redy to pass the test.");
+        jCheckBox1.setText("I have read and understand the instructions, and ready to pass the test.");
 
         jButton1.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         jButton1.setText("START");
         jButton1.setBorderPainted(false);
         jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -92,7 +105,7 @@ public class TakeTest extends javax.swing.JFrame {
                     .addComponent(jScrollPane1)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jCheckBox1)
-                        .addGap(0, 66, Short.MAX_VALUE))
+                        .addGap(0, 59, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -129,6 +142,29 @@ public class TakeTest extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+         if (jCheckBox1.isSelected()) {
+        // Start the test
+        // Add your code to proceed with the test here
+        TestProcess  testProcess = new TestProcess();
+        testProcess.setVisible(true);
+        this.dispose();
+    } else {
+        // Display an alert or change the checkbox color to indicate the requirement
+        jCheckBox1.setForeground(Color.RED); // Change the text color to red
+        // Alternatively, you can show a pop-up dialog with an alert message
+        JOptionPane.showMessageDialog(this, "Please read and accept the instructions before starting the test.", "Alert", JOptionPane.WARNING_MESSAGE);
+    }
+         
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+
+private void jCheckBox1ItemStateChanged(java.awt.event.ItemEvent evt) {
+    if (jCheckBox1.isSelected()) {
+        jCheckBox1.setForeground(Color.GREEN); // Restore the text color to black
+    }
+}
     /**
      * @param args the command line arguments
      */
