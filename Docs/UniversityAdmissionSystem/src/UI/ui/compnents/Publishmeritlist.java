@@ -207,7 +207,9 @@ public class Publishmeritlist extends javax.swing.JFrame {
 
     private void choice1FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_choice1FocusLost
       // TODO add your handling code here:
-     
+
+
+   
     }//GEN-LAST:event_choice1FocusLost
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
