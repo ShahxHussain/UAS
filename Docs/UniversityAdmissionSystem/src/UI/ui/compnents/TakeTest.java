@@ -83,6 +83,11 @@ public class TakeTest extends javax.swing.JFrame {
         jCheckBox1.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         jCheckBox1.setForeground(new java.awt.Color(0, 243, 5));
         jCheckBox1.setText("I have read and understand the instructions, and ready to pass the test.");
+        jCheckBox1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCheckBox1ActionPerformed(evt);
+            }
+        });
 
         jButton1.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         jButton1.setText("START");
@@ -158,6 +163,10 @@ public class TakeTest extends javax.swing.JFrame {
     }
          
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jCheckBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jCheckBox1ActionPerformed
 
 
 private void jCheckBox1ItemStateChanged(java.awt.event.ItemEvent evt) {

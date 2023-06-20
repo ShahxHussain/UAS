@@ -14,7 +14,7 @@ import model.SQLConnection;
  */
 
 public class UASController {
-    SQLConnection objDAL;
+    SQLConnection objSQL;
     
     public UASController()
     {
@@ -59,7 +59,7 @@ public class UASController {
 //    //Use Case: Take Test
 //    
 public ArrayList<testDTO> getTest() {
-    return objDAL.getTestQuestions();
+    return objSQL.getTestQuestions();
 }
 //    
 //    //Use Case: Print Challan
