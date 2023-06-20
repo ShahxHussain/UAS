@@ -45,9 +45,9 @@ public class CheckListController {
         // Replace this code with your actual implementation to fetch the waiting list data from the database
         // Here, a dummy list is returned for demonstration purposes
         List<CheckMeritListModel> waitingList = new ArrayList<>();
-        waitingList.add(new CheckMeritListModel(01, "King Khan", "WL001"));
-        waitingList.add(new CheckMeritListModel(02, "Jane Smith", "WL002"));
-        waitingList.add(new CheckMeritListModel(03, "Bob Johnson", "WL003"));
+        waitingList.add(new CheckMeritListModel(01, "Hammad ali", "F"));
+        waitingList.add(new CheckMeritListModel(02, "haris khan", "F"));
+        waitingList.add(new CheckMeritListModel(03, "furqan ali", "F"));
         return waitingList;
     }
 }
