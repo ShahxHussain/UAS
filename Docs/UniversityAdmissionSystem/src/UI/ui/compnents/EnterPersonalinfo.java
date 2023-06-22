@@ -10,6 +10,8 @@ package UI.ui.compnents;
  */
 import common.StudentDTO;
 import common.Response;
+import java.sql.*;
+import javax.swing.JOptionPane;
 
 public class EnterPersonalinfo extends javax.swing.JFrame {
 
@@ -102,6 +104,11 @@ public class EnterPersonalinfo extends javax.swing.JFrame {
 
         jButton2.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jButton2.setText("Clear");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         jButton3.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jButton3.setText("Submitt");
@@ -223,12 +230,88 @@ public class EnterPersonalinfo extends javax.swing.JFrame {
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
-        StudentDTO objstu= new StudentDTO();
-        objstu.Firstname= jTextField2.getText();
-        objstu.Lastname= jTextField3.getText();
-        objstu.Email= jTextField4.getText();
-        objstu.Phoneno= jTextField5.getText();
-        objstu.Address= jTextField6.getText();
+//        StudentDTO objstu= new StudentDTO();
+//        objstu.Firstname= jTextField2.getText();
+//        objstu.Lastname= jTextField3.getText();
+//        objstu.Email= jTextField4.getText();
+//        objstu.Phoneno= jTextField5.getText();
+//        objstu.Address= jTextField6.getText();    // Database connection details
+    String url = "jdbc:sqlserver://localhost:1433;databaseName=Universityadmissionsystem;trustServerCertificate=true;";
+    String username = "sa";
+    String password = "123456";
+
+    // Student data
+    String firstname = jTextField2.getText();
+    String lastname = jTextField3.getText();
+    String email = jTextField4.getText();
+    String phoneno = jTextField5.getText();
+    String address = jTextField6.getText();
+
+    // Create a StudentDTO object and set the data
+    StudentDTO objstu = new StudentDTO();
+    objstu.Firstname = firstname;
+    objstu.Lastname = lastname;
+    objstu.Email = email;
+    objstu.Phoneno = phoneno;
+    objstu.Address = address;
+
+    // Database connection and data insertion
+    try {
+        // Load the SQL Server JDBC driver
+        Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+
+        // Establish the database connection
+        Connection conn = DriverManager.getConnection(url, username, password);
+
+        // Create the SQL query to insert the student data
+        String query = "INSERT INTO students (firstname, lastname, email, phoneno, address) VALUES (?, ?, ?, ?, ?)";
+
+        // Create a prepared statement to prevent SQL injection
+        PreparedStatement statement = conn.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
+        statement.setString(1, objstu.Firstname);
+        statement.setString(2, objstu.Lastname);
+        statement.setString(3, objstu.Email);
+        statement.setString(4, objstu.Phoneno);
+        statement.setString(5, objstu.Address);
+
+        // Execute the query
+        int affectedRows = statement.executeUpdate();
+
+        if (affectedRows > 0) {
+            // Get the generated keys (if any)
+            ResultSet generatedKeys = statement.getGeneratedKeys();
+            if (generatedKeys.next()) {
+                // Get the generated 'id' value
+                int id = generatedKeys.getInt(1);
+
+                // Display a success message with the generated 'id' value
+                JOptionPane.showMessageDialog(null, "Data inserted successfully! Student ID: " + id);
+            } else {
+                // Display a success message without the generated 'id' value
+                JOptionPane.showMessageDialog(null, "Data inserted successfully!");
+            }
+        } else {
+            // Display an error message if no rows were affected
+            JOptionPane.showMessageDialog(null, "Failed to insert data into the database.");
+        }
+
+        // Close the prepared statement and connection
+        statement.close();
+        conn.close();
+    } catch (ClassNotFoundException | SQLException ex) {
+        // Handle any errors that may occur
+        ex.printStackTrace();
+        JOptionPane.showMessageDialog(null, "An error occurred while inserting data.");
+    }
+    
+        // Clear the input fields
+    jTextField2.setText("");
+    jTextField3.setText("");
+    jTextField4.setText("");
+    jTextField5.setText("");
+    jTextField6.setText("");
+
+        
         
         
         
@@ -236,6 +319,15 @@ public class EnterPersonalinfo extends javax.swing.JFrame {
         
         
     }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+            jTextField2.setText("");
+    jTextField3.setText("");
+    jTextField4.setText("");
+    jTextField5.setText("");
+    jTextField6.setText("");
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments
