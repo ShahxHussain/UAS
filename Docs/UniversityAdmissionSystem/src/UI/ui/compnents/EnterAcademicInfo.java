@@ -4,6 +4,15 @@
  */
 package UI.ui.compnents;
 
+import javax.swing.JOptionPane;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+
+
 /**
  *
  * @author SOMAN PARACHA
@@ -117,7 +126,7 @@ public class EnterAcademicInfo extends javax.swing.JFrame {
         jLabel7.setText("SESSION");
 
         jLabel8.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel8.setText("INTEREMEDIATE INFORMATION");
+        jLabel8.setText("INSTITUTION NAME");
 
         jLabel9.setForeground(new java.awt.Color(255, 255, 255));
         jLabel9.setText("TOTAL MARKS");
@@ -138,40 +147,44 @@ public class EnterAcademicInfo extends javax.swing.JFrame {
         jButton1.setBackground(new java.awt.Color(0, 128, 128));
         jButton1.setForeground(new java.awt.Color(255, 255, 255));
         jButton1.setText("SUBMIT");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jLabel1)
+                .addGap(209, 209, 209))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(jLabel2))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGap(9, 9, 9)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(9, 9, 9)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jLabel3)
-                                            .addComponent(jLabel4)
-                                            .addComponent(jLabel5)
-                                            .addComponent(jLabel6)
-                                            .addComponent(jLabel7)
-                                            .addComponent(jLabel10)
-                                            .addComponent(jLabel9)
-                                            .addComponent(jLabel11)
-                                            .addComponent(jLabel12))
-                                        .addGap(266, 266, 266))
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(257, 257, 257))))
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel3)
+                                    .addComponent(jLabel4)
+                                    .addComponent(jLabel5)
+                                    .addComponent(jLabel6)
+                                    .addComponent(jLabel7)
+                                    .addComponent(jLabel10)
+                                    .addComponent(jLabel9)
+                                    .addComponent(jLabel11)
+                                    .addComponent(jLabel12)
+                                    .addComponent(jLabel8))
+                                .addGap(266, 266, 266))
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(62, 62, 62)
-                                .addComponent(jLabel8)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                                .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(257, 257, 257)))
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jTextField9)
                             .addComponent(jTextField10)
@@ -182,16 +195,11 @@ public class EnterAcademicInfo extends javax.swing.JFrame {
                             .addComponent(jTextField21)
                             .addComponent(jTextField22)
                             .addComponent(jTextField1)
-                            .addComponent(jTextField8, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 233, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(jTextField8, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 233, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(274, 274, 274)
+                        .addComponent(jButton1)))
                 .addContainerGap(38, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jLabel1)
-                .addGap(209, 209, 209))
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(274, 274, 274)
-                .addComponent(jButton1)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -225,17 +233,14 @@ public class EnterAcademicInfo extends javax.swing.JFrame {
                     .addComponent(jLabel7))
                 .addGap(32, 32, 32)
                 .addComponent(jLabel13)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(41, 41, 41)
-                        .addComponent(jLabel8))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(38, 38, 38)
-                        .addComponent(jTextField19, javax.swing.GroupLayout.DEFAULT_SIZE, 34, Short.MAX_VALUE)))
+                .addGap(38, 38, 38)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jTextField19, javax.swing.GroupLayout.DEFAULT_SIZE, 34, Short.MAX_VALUE)
+                    .addComponent(jLabel8))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel9)
-                    .addComponent(jTextField20, javax.swing.GroupLayout.DEFAULT_SIZE, 34, Short.MAX_VALUE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jTextField20, javax.swing.GroupLayout.DEFAULT_SIZE, 34, Short.MAX_VALUE)
+                    .addComponent(jLabel9))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel10)
@@ -299,6 +304,100 @@ public class EnterAcademicInfo extends javax.swing.JFrame {
     private void jTextField21ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField21ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField21ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+String url = "jdbc:sqlserver://localhost:1433;databaseName=UAS;trustServerCertificate=true;";
+String username = "sa";
+String password = "soman5050";
+
+// Intermediate information
+String intermediateInstitutionName = jTextField8.getText();
+int intermediateTotalMarks = Integer.parseInt(jTextField9.getText());
+int intermediateObtainedMarks = Integer.parseInt(jTextField10.getText());
+double intermediatePercentage = Double.parseDouble(jTextField11.getText());
+String intermediateSession = jTextField12.getText();
+
+// Matric information
+String matricInstitutionName = jTextField19.getText();
+int matricTotalMarks = Integer.parseInt(jTextField20.getText());
+int matricObtainedMarks = Integer.parseInt(jTextField21.getText());
+double matricPercentage = Double.parseDouble(jTextField22.getText());
+String matricSession = jTextField1.getText();
+
+// Database connection and data insertion
+try {
+    // Load the SQL Server JDBC driver
+    Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+
+    // Establish the database connection
+    Connection conn = DriverManager.getConnection("jdbc:sqlserver://localhost:1433;databaseName=UAS;trustServerCertificate=true;", "sa","soman5050");
+
+    // Insert intermediate academic information
+    String intermediateQuery = "INSERT INTO intermediate_info (institution_name, total_marks, obtained_marks, percentage, session) VALUES (?, ?, ?, ?, ?)";
+    PreparedStatement intermediateStatement = conn.prepareStatement(intermediateQuery, Statement.RETURN_GENERATED_KEYS);
+    intermediateStatement.setString(1, intermediateInstitutionName);
+    intermediateStatement.setInt(2, intermediateTotalMarks);
+    intermediateStatement.setInt(3, intermediateObtainedMarks);
+    intermediateStatement.setDouble(4, intermediatePercentage);
+    intermediateStatement.setString(5, intermediateSession);
+    int intermediateAffectedRows = intermediateStatement.executeUpdate();
+
+    // Insert matric academic information
+    String matricQuery = "INSERT INTO matric_info (institution_name, total_marks, obtained_marks, percentage, session) VALUES (?, ?, ?, ?, ?)";
+    PreparedStatement matricStatement = conn.prepareStatement(matricQuery, Statement.RETURN_GENERATED_KEYS);
+    matricStatement.setString(1, matricInstitutionName);
+    matricStatement.setInt(2, matricTotalMarks);
+    matricStatement.setInt(3, matricObtainedMarks);
+    matricStatement.setDouble(4, matricPercentage);
+    matricStatement.setString(5, matricSession);
+    int matricAffectedRows = matricStatement.executeUpdate();
+
+    // Check if both insertions were successful
+    if (intermediateAffectedRows > 0 && matricAffectedRows > 0) {
+        // Get the generated keys (if any) for intermediate_info table
+        ResultSet intermediateGeneratedKeys = intermediateStatement.getGeneratedKeys();
+        if (intermediateGeneratedKeys.next()) {
+            // Get the generated 'id' value for intermediate_info
+            int intermediateId = intermediateGeneratedKeys.getInt(1);
+
+            // Display a success message with the generated 'id' value for intermediate_info
+            JOptionPane.showMessageDialog(null, "Intermediate Info inserted successfully! ID: " + intermediateId);
+        }
+
+        // Get the generated keys (if any) for matric_info table
+        ResultSet matricGeneratedKeys = matricStatement.getGeneratedKeys();
+        if (matricGeneratedKeys.next()) {
+            // Get the generated 'id' value for matric_info
+            int matricId = matricGeneratedKeys.getInt(1);
+
+            // Display a success message with the generated 'id' value for matric_info
+            JOptionPane.showMessageDialog(null, "Matric Info inserted successfully! ID: " + matricId);
+        }
+    } else {
+        // Display an error message if any of the insertions failed
+        JOptionPane.showMessageDialog(null, "Failed to insert data into the database.");
+    }
+
+    // Close the prepared statements and connection
+    intermediateStatement.close();
+    matricStatement.close();
+    conn.close();
+} catch (ClassNotFoundException | SQLException ex) {
+    // Handle any errors that may occur
+    ex.printStackTrace();
+    JOptionPane.showMessageDialog(null, "Data is successfully added.");
+}
+
+
+// Clear the input fields for intermediate information
+
+// Clear the input fields for matric information
+
+
+
+        
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
