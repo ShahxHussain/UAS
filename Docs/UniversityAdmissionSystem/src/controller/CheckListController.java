@@ -7,15 +7,16 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import model.CheckMeritListModel;
+import common.CheckMeritListDTO;
+import controller.CheckMeritListValidator;
 
 public class CheckListController {
     private static final String URL = "jdbc:sqlserver://localhost:1433;databaseName=universityadmissionsystem;trustServerCertificate=true;";
     private static final String USERNAME = "sa";
     private static final String PASSWORD = "123456";
 
-    public List<CheckMeritListModel> getMeritList() {
-        List<CheckMeritListModel> meritList = new ArrayList<>();
+    public List<CheckMeritListDTO> getMeritList() {
+        List<CheckMeritListDTO> meritList = new ArrayList<>();
 
         try (Connection connection = DriverManager.getConnection(URL, USERNAME, PASSWORD)) {
             String query = "SELECT * FROM merit_list";
@@ -26,12 +27,17 @@ public class CheckListController {
             while (resultSet.next()) {
                 int studentID = resultSet.getInt("student_id");
                 String studentName = resultSet.getString("student_name");
+                String course = resultSet.getString("course");
+                int matricMarks = resultSet.getInt("matric_marks");
+                int fscMarks = resultSet.getInt("fsc_marks");
+                int testMarks = resultSet.getInt("test_marks");
+                double percentage = resultSet.getDouble("percentage");
                 String rank = resultSet.getString("rank");
 
-                // Perform validation on the data
-                if (studentID > 0 && studentName != null && !studentName.isEmpty() && rank != null && !rank.isEmpty()) {
-                    CheckMeritListModel entry = new CheckMeritListModel(studentID, studentName, rank);
-                    meritList.add(entry);
+                CheckMeritListDTO dto = new CheckMeritListDTO(studentID, studentName, course, matricMarks, fscMarks, testMarks, percentage, rank);
+
+                if (CheckMeritListValidator.validateCheckMeritListDTO(dto)) {
+                    meritList.add(dto);
                 }
             }
 
@@ -41,13 +47,37 @@ public class CheckListController {
 
         return meritList;
     }
-        public List<CheckMeritListModel> getWaitingList() {
-        // Replace this code with your actual implementation to fetch the waiting list data from the database
-        // Here, a dummy list is returned for demonstration purposes
-        List<CheckMeritListModel> waitingList = new ArrayList<>();
-        waitingList.add(new CheckMeritListModel(01, "Hammad ali", "F"));
-        waitingList.add(new CheckMeritListModel(02, "haris khan", "F"));
-        waitingList.add(new CheckMeritListModel(03, "furqan ali", "F"));
+
+    public List<CheckMeritListDTO> getWaitingList() {
+        List<CheckMeritListDTO> waitingList = new ArrayList<>();
+
+        try (Connection connection = DriverManager.getConnection(URL, USERNAME, PASSWORD)) {
+            String query = "SELECT * FROM waiting_list";
+            PreparedStatement statement = connection.prepareStatement(query);
+
+            ResultSet resultSet = statement.executeQuery();
+
+            while (resultSet.next()) {
+                int studentID = resultSet.getInt("student_id");
+                String studentName = resultSet.getString("student_name");
+                String course = resultSet.getString("course");
+                int matricMarks = resultSet.getInt("matric_marks");
+                int fscMarks = resultSet.getInt("fsc_marks");
+                int testMarks = resultSet.getInt("test_marks");
+                double percentage = resultSet.getDouble("percentage");
+                String rank = resultSet.getString("rank");
+
+                CheckMeritListDTO dto = new CheckMeritListDTO(studentID, studentName, course, matricMarks, fscMarks, testMarks, percentage, rank);
+
+                if (CheckMeritListValidator.validateCheckMeritListDTO(dto)) {
+                    waitingList.add(dto);
+                }
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
         return waitingList;
     }
 }

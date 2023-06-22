@@ -5,13 +5,15 @@
 package UI.ui.compnents;
 
 import controller.CheckListController;
+import common.CheckMeritListDTO;
 import java.awt.Font;
+import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 //import static java.util.Map.entry;
-import model.CheckMeritListModel;
+
 
 /**
  *
@@ -22,8 +24,11 @@ public class Checkmeritlist extends javax.swing.JFrame {
     /**
      * Creates new form Checkmeritlist
      */
+    private CheckListController checkListController; // Added controller reference
+
     public Checkmeritlist() {
         initComponents();
+        checkListController = new CheckListController(); // Instantiate the controller
     }
 
     /**
@@ -208,52 +213,43 @@ public class Checkmeritlist extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-        CheckListController controller = new CheckListController();
-    List<CheckMeritListModel> waitingList = controller.getWaitingList();
+////     masdkmlkdla
+//    List<CheckMeritListDTO> waitingList = checkListController.getWaitingList(); // Retrieve waiting list from the controller
+//            
+//            DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+//            model.setRowCount(0);
+//            for (CheckMeritListDTO waiting : waitingList) {
+//                model.addRow(new Object[]{waiting.getRollNumber(), waiting.getName(), waiting.getScore()});
+//            }
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+    CheckListController controller = new CheckListController();
+    List<CheckMeritListDTO> meritList = controller.getMeritList();
 
     // Create a table model to hold the data
     DefaultTableModel tableModel = new DefaultTableModel(
-            new Object[][]{},
-            new String[]{"Student ID", "Student Name", "Rank"}
+        new Object[][]{},
+        new String[]{"Student ID", "Student Name", "Course", "FSC Marks", "Metric Marks", "Test Marks", "Percentage", "Rank"}
     );
 
     // Add data to the table model
-    for (CheckMeritListModel meritListModel : waitingList) {
+    for (CheckMeritListDTO meritListDTO : meritList) {
         Object[] rowData = {
-            String.valueOf(meritListModel.getStudentID()),
-            meritListModel.getStudentName(),
-            meritListModel.getRank()
+            String.valueOf(meritListDTO.getStudentID()),
+            meritListDTO.getStudentName(),
+            meritListDTO.getCourse(),
+            String.valueOf(meritListDTO.getFscMarks()),
+            String.valueOf(meritListDTO.getMatricMarks()),
+            String.valueOf(meritListDTO.getTestMarks()),
+            meritListDTO.getPercentage(),
+            meritListDTO.getRank()
         };
         tableModel.addRow(rowData);
     }
 
     // Set the table model on the table
     jTable1.setModel(tableModel);
-    }//GEN-LAST:event_jButton1ActionPerformed
-
-    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
-CheckListController controller = new CheckListController();
-List<CheckMeritListModel> meritList = controller.getMeritList();
-
-// Create a table model to hold the data
-DefaultTableModel tableModel = new DefaultTableModel(
-        new Object[][]{},
-        new String[]{"Student ID", "Student Name", "Rank"}
-);
-
-// Add data to the table model
-for (CheckMeritListModel meritListModel : meritList) {
-    Object[] rowData = {
-        String.valueOf(meritListModel.getStudentID()),
-        meritListModel.getStudentName(),
-        meritListModel.getRank()
-    };
-    tableModel.addRow(rowData);
-}
-
-// Set the table model on the table
-jTable1.setModel(tableModel);
 
 
     }//GEN-LAST:event_jButton6ActionPerformed
