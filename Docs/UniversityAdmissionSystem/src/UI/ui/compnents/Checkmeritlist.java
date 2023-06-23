@@ -213,44 +213,56 @@ public class Checkmeritlist extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-////     masdkmlkdla
-//    List<CheckMeritListDTO> waitingList = checkListController.getWaitingList(); // Retrieve waiting list from the controller
-//            
-//            DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
-//            model.setRowCount(0);
-//            for (CheckMeritListDTO waiting : waitingList) {
-//                model.addRow(new Object[]{waiting.getRollNumber(), waiting.getName(), waiting.getScore()});
-//            }
-    }//GEN-LAST:event_jButton1ActionPerformed
-
-    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
-    CheckListController controller = new CheckListController();
-    List<CheckMeritListDTO> meritList = controller.getMeritList();
+CheckListController controller = new CheckListController();
+    List<CheckMeritListDTO> waitingList = controller.getWaitingList();
 
     // Create a table model to hold the data
     DefaultTableModel tableModel = new DefaultTableModel(
         new Object[][]{},
-        new String[]{"Student ID", "Student Name", "Course", "FSC Marks", "Metric Marks", "Test Marks", "Percentage", "Rank"}
+        new String[]{"Student ID", "Student Name", "Test Marks", "Percentage"}
     );
 
     // Add data to the table model
-    for (CheckMeritListDTO meritListDTO : meritList) {
+    for (CheckMeritListDTO waitingListDTO : waitingList) {
         Object[] rowData = {
-            String.valueOf(meritListDTO.getStudentID()),
-            meritListDTO.getStudentName(),
-            meritListDTO.getCourse(),
-            String.valueOf(meritListDTO.getFscMarks()),
-            String.valueOf(meritListDTO.getMatricMarks()),
-            String.valueOf(meritListDTO.getTestMarks()),
-            meritListDTO.getPercentage(),
-            meritListDTO.getRank()
+            String.valueOf(waitingListDTO.getStudentID()),
+            waitingListDTO.getStudentName(),
+            String.valueOf(waitingListDTO.getTestMarks()),
+            String.valueOf(waitingListDTO.getPercentage())
         };
         tableModel.addRow(rowData);
     }
 
     // Set the table model on the table
     jTable1.setModel(tableModel);
+    }//GEN-LAST:event_jButton1ActionPerformed
 
+    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+CheckListController controller = new CheckListController();
+List<CheckMeritListDTO> meritList = controller.getMeritList();
+
+// Create a table model to hold the data
+DefaultTableModel tableModel = new DefaultTableModel(
+    new Object[][]{},
+    new String[]{"Student ID", "Student Name", "FSC Marks", "Metric Marks", "Test Marks", "Percentage", "Rank"}
+);
+
+// Add data to the table model
+for (CheckMeritListDTO meritListDTO : meritList) {
+    Object[] rowData = {
+        String.valueOf(meritListDTO.getStudentID()),
+        meritListDTO.getStudentName(),
+        String.valueOf(meritListDTO.getFscMarks()),
+        String.valueOf(meritListDTO.getMatricMarks()),
+        String.valueOf(meritListDTO.getTestMarks()),
+        String.valueOf(meritListDTO.getPercentage()),
+        String.valueOf(meritListDTO.getRank())
+    };
+    tableModel.addRow(rowData);
+}
+
+// Set the table model on the table
+jTable1.setModel(tableModel);
 
     }//GEN-LAST:event_jButton6ActionPerformed
 

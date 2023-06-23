@@ -3,24 +3,27 @@ package common;
 public class CheckMeritListDTO {
     private int studentID;
     private String studentName;
-    private String course;
-    private int matricMarks;
     private int fscMarks;
+    private int matricMarks;
     private int testMarks;
     private double percentage;
     private String rank;
 
-    public CheckMeritListDTO(int studentID, String studentName, String course, int matricMarks, int fscMarks, int testMarks, double percentage, String rank) {
+    public CheckMeritListDTO(int studentID, String studentName, int fscMarks, int matricMarks, int testMarks, double percentage, String rank) {
         this.studentID = studentID;
         this.studentName = studentName;
-        this.course = course;
-        this.matricMarks = matricMarks;
         this.fscMarks = fscMarks;
+        this.matricMarks = matricMarks;
         this.testMarks = testMarks;
         this.percentage = percentage;
         this.rank = rank;
     }
-
+ public CheckMeritListDTO(int studentID, String studentName, int testMarks, double percentage) {
+        this.studentID = studentID;
+        this.studentName = studentName;
+        this.testMarks = testMarks;
+        this.percentage = percentage;
+    }
     public int getStudentID() {
         return studentID;
     }
@@ -37,12 +40,12 @@ public class CheckMeritListDTO {
         this.studentName = studentName;
     }
 
-    public String getCourse() {
-        return course;
+    public int getFscMarks() {
+        return fscMarks;
     }
 
-    public void setCourse(String course) {
-        this.course = course;
+    public void setFscMarks(int fscMarks) {
+        this.fscMarks = fscMarks;
     }
 
     public int getMatricMarks() {
@@ -51,14 +54,6 @@ public class CheckMeritListDTO {
 
     public void setMatricMarks(int matricMarks) {
         this.matricMarks = matricMarks;
-    }
-
-    public int getFscMarks() {
-        return fscMarks;
-    }
-
-    public void setFscMarks(int fscMarks) {
-        this.fscMarks = fscMarks;
     }
 
     public int getTestMarks() {
@@ -83,17 +78,5 @@ public class CheckMeritListDTO {
 
     public void setRank(String rank) {
         this.rank = rank;
-    }
-
-    public Object getRollNumber() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    public Object getName() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    public Object getScore() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 }

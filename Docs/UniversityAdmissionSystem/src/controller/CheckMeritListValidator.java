@@ -6,8 +6,7 @@ public class CheckMeritListValidator {
     public static boolean validateCheckMeritListDTO(CheckMeritListDTO common) {
         // Validate the CheckMeritListDto fields
         if (common.getStudentID() <= 0 || common.getStudentName() == null || common.getStudentName().isEmpty()
-                || common.getCourse() == null || common.getCourse().isEmpty() || common.getRank() == null
-                || common.getRank().isEmpty()) {
+                || common.getTestMarks() < 0 || common.getPercentage() < 0) {
             return false;
         }
 

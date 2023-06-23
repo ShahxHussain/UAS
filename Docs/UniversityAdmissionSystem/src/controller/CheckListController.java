@@ -7,8 +7,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.table.DefaultTableModel;
 import common.CheckMeritListDTO;
-import controller.CheckMeritListValidator;
 
 public class CheckListController {
     private static final String URL = "jdbc:sqlserver://localhost:1433;databaseName=universityadmissionsystem;trustServerCertificate=true;";
@@ -19,7 +19,7 @@ public class CheckListController {
         List<CheckMeritListDTO> meritList = new ArrayList<>();
 
         try (Connection connection = DriverManager.getConnection(URL, USERNAME, PASSWORD)) {
-            String query = "SELECT * FROM merit_list";
+            String query = "SELECT [student_id], [student_name], [matric_marks], [fsc_marks], [test_marks], [percentage], [rank] FROM merit_list";
             PreparedStatement statement = connection.prepareStatement(query);
 
             ResultSet resultSet = statement.executeQuery();
@@ -27,14 +27,13 @@ public class CheckListController {
             while (resultSet.next()) {
                 int studentID = resultSet.getInt("student_id");
                 String studentName = resultSet.getString("student_name");
-                String course = resultSet.getString("course");
                 int matricMarks = resultSet.getInt("matric_marks");
                 int fscMarks = resultSet.getInt("fsc_marks");
                 int testMarks = resultSet.getInt("test_marks");
                 double percentage = resultSet.getDouble("percentage");
                 String rank = resultSet.getString("rank");
 
-                CheckMeritListDTO dto = new CheckMeritListDTO(studentID, studentName, course, matricMarks, fscMarks, testMarks, percentage, rank);
+                CheckMeritListDTO dto = new CheckMeritListDTO(studentID, studentName, fscMarks, matricMarks, testMarks, percentage, rank);
 
                 if (CheckMeritListValidator.validateCheckMeritListDTO(dto)) {
                     meritList.add(dto);
@@ -52,22 +51,18 @@ public class CheckListController {
         List<CheckMeritListDTO> waitingList = new ArrayList<>();
 
         try (Connection connection = DriverManager.getConnection(URL, USERNAME, PASSWORD)) {
-            String query = "SELECT * FROM waiting_list";
+            String query = "SELECT [std_id], [std_name], [testmarks], [percentage] FROM wait_list";
             PreparedStatement statement = connection.prepareStatement(query);
 
             ResultSet resultSet = statement.executeQuery();
 
             while (resultSet.next()) {
-                int studentID = resultSet.getInt("student_id");
-                String studentName = resultSet.getString("student_name");
-                String course = resultSet.getString("course");
-                int matricMarks = resultSet.getInt("matric_marks");
-                int fscMarks = resultSet.getInt("fsc_marks");
-                int testMarks = resultSet.getInt("test_marks");
+                int studentID = resultSet.getInt("std_id");
+                String studentName = resultSet.getString("std_name");
+                int testMarks = resultSet.getInt("testmarks");
                 double percentage = resultSet.getDouble("percentage");
-                String rank = resultSet.getString("rank");
 
-                CheckMeritListDTO dto = new CheckMeritListDTO(studentID, studentName, course, matricMarks, fscMarks, testMarks, percentage, rank);
+                CheckMeritListDTO dto = new CheckMeritListDTO(studentID, studentName, testMarks, percentage);
 
                 if (CheckMeritListValidator.validateCheckMeritListDTO(dto)) {
                     waitingList.add(dto);
