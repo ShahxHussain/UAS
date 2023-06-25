@@ -5,10 +5,6 @@
 package model;
 import java.sql.Connection;
 
-/**
- *
- * @author Abdul aziz
- */
 public interface IConnection {
     public Connection getConnection();
 }

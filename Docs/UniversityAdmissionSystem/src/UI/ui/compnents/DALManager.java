@@ -1,3 +1,9 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
+package UI.ui.compnents;
+
 import dal.Student;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -8,6 +14,10 @@ import java.util.List;
 import model.IConnection;
 import model.SQLConnection;
 
+/**
+ *
+ * @author DELL
+ */
 public class DALManager {
     private IConnection sql;
 
@@ -38,3 +48,4 @@ public class DALManager {
         return students;
     }
 }
+
