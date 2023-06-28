@@ -55,6 +55,7 @@ public class EnterPersonalinfo extends javax.swing.JFrame {
         jTextField1.setText("Enter Personal Info");
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("First name");
 
         jTextField2.addActionListener(new java.awt.event.ActionListener() {
@@ -64,6 +65,7 @@ public class EnterPersonalinfo extends javax.swing.JFrame {
         });
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Phone No");
 
         jTextField3.addActionListener(new java.awt.event.ActionListener() {
@@ -73,6 +75,7 @@ public class EnterPersonalinfo extends javax.swing.JFrame {
         });
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Last name");
 
         jTextField4.addActionListener(new java.awt.event.ActionListener() {
@@ -82,6 +85,7 @@ public class EnterPersonalinfo extends javax.swing.JFrame {
         });
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("Email");
 
         jTextField5.addActionListener(new java.awt.event.ActionListener() {
@@ -91,6 +95,7 @@ public class EnterPersonalinfo extends javax.swing.JFrame {
         });
 
         jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setText("Address");
 
         jTextField6.addActionListener(new java.awt.event.ActionListener() {
