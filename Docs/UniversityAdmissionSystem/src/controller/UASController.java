@@ -4,6 +4,7 @@
  */
 package controller;
 
+import UI.ui.compnents.DALManager;
 import common.testDTO;
 import java.util.ArrayList;
 import model.SQLConnection;
@@ -14,11 +15,11 @@ import model.SQLConnection;
  */
 
 public class UASController {
-    SQLConnection objSQL;
+    public DALManager objTest;
     
     public UASController()
-    {
-        
+    { 
+        objTest  = new DALManager();
     }
 //    
 ////Mahad Wajid (Fa21-bse-057 ) Use Case: Enter Personal Info 
@@ -59,7 +60,7 @@ public class UASController {
 //    //Use Case: Take Test
 //    
 public ArrayList<testDTO> getTest() {
-    return objSQL.getTestQuestions();
+    return objTest.getTestQuestions();
 }
 //    
 //    //Use Case: Print Challan

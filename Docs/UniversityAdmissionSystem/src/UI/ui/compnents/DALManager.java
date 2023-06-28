@@ -4,6 +4,7 @@
  */
 package UI.ui.compnents;
 
+import common.testDTO;
 import dal.Student;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -47,5 +48,45 @@ public class DALManager {
 
         return students;
     }
+
+   public ArrayList<testDTO> getTestQuestions() {
+    ArrayList<testDTO> testQuestions = new ArrayList<>();
+
+    try (Connection connection = sql.getConnection()) {
+        String query = "SELECT * FROM TestQuestions";
+        PreparedStatement statement = connection.prepareStatement(query);
+        ResultSet resultSet = statement.executeQuery();
+
+        while (resultSet.next()) {
+            // Retrieve the question details from the result set
+            String id = resultSet.getString("ID");
+            String description = resultSet.getString("Description");
+            String option1 = resultSet.getString("Option1");
+            String option2 = resultSet.getString("Option2");
+            String option3 = resultSet.getString("Option3");
+            String option4 = resultSet.getString("Option4");
+            String answer = resultSet.getString("Answer");
+
+            // Create a new testDTO object and set its properties
+            testDTO question = new testDTO();
+            question.setId(id);
+            question.setDescription(description);
+            question.setOption1(option1);
+            question.setOption2(option2);
+            question.setOption3(option3);
+            question.setOption4(option4);
+            question.setAnswer(answer);
+
+            // Add the question to the list
+            testQuestions.add(question);
+        }
+    } catch (SQLException e) {
+        e.printStackTrace();
+    }
+
+    return testQuestions;
+}
+
+
 }
 

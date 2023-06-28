@@ -3,16 +3,17 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package UI.ui.compnents;
-
+import java.awt.Color;
 import java.awt.Color;
 import javax.swing.JOptionPane;
 import UI.ui.compnents.TestProcess;
+import controller.UASController;
 /**
  *
  * @author Abdul aziz
  */
 public class TakeTest extends javax.swing.JFrame {
-
+    UASController objController;
     /**
      * Creates new form TakeTest
      */
