@@ -252,6 +252,18 @@ public class EnterPersonalinfo extends javax.swing.JFrame {
     String phoneno = jTextField5.getText();
     String address = jTextField6.getText();
 
+    // Validate name and email
+    if (firstname.isEmpty() || lastname.isEmpty() || email.isEmpty()) {
+        JOptionPane.showMessageDialog(null, "Please enter all required fields.");
+        return;
+    }
+
+    // Validate email format
+    if (!isValidEmail(email)) {
+        JOptionPane.showMessageDialog(null, "Please enter a valid email address.");
+        return;
+    }
+
     // Create a StudentDTO object and set the data
     StudentDTO objstu = new StudentDTO();
     objstu.Firstname = firstname;
@@ -308,15 +320,22 @@ public class EnterPersonalinfo extends javax.swing.JFrame {
         ex.printStackTrace();
         JOptionPane.showMessageDialog(null, "An error occurred while inserting data.");
     }
-    
-        // Clear the input fields
+
+    // Clear the input fields
     jTextField2.setText("");
     jTextField3.setText("");
     jTextField4.setText("");
     jTextField5.setText("");
     jTextField6.setText("");
+}
 
-        
+private boolean isValidEmail(String email) {
+    // Email validation logic
+    // You can replace this with a more robust email validation method if needed
+    String emailRegex = "^[A-Za-z0-9+_.-]+@(.+)$";
+    return email.matches(emailRegex);
+
+
         
         
         
