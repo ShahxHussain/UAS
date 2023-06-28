@@ -197,7 +197,7 @@ public static boolean validateApplicant(Applicant applicant) { // As there is no
         
 //        public static boolean isValidStudentName(String studentName) {
 //            // Add your validation logic here
-//            // For example, check if the student name meets certain criteria
+//            // For example, check if the student name meets certain criteria 
 //            return !studentName.isEmpty();
 //        }
 //

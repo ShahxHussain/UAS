@@ -6,10 +6,8 @@ package model;
 
 import controller.UASController;
 
-/**
- *
- * @author Abdul aziz
- */
+
+
 public class UASFactory {
     
     public static UASController getInstanceOfUASController()
