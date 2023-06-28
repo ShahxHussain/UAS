@@ -23,20 +23,20 @@ public class confirmAdmission extends javax.swing.JFrame {
 
     public confirmAdmission() {
         initComponents();
-//        dalManager = new DALManager();
-//        displayStudents();
+        dalManager = new DALManager();
+        displayStudents();
     }
 
-//    private void displayStudents() {
-//        List<Student> students = dalManager.getStudents();
-//
-//        DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
-//        model.setRowCount(0);
-//
-//        for (Student student : students) {
-//            model.addRow(new Object[]{student.getAdmissionID(), student.getStudentName(), student.isFeePaid()});
-//        }
-//    }
+    private void displayStudents() {
+        List<Student> students = dalManager.getStudents();
+
+        DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+        model.setRowCount(0);
+
+        for (Student student : students) {
+            model.addRow(new Object[]{student.getAdmissionID(), student.getStudentName(), student.isFeePaid()});
+        }
+    }
     
 
     /**
