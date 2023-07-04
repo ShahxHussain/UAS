@@ -60,6 +60,11 @@ public class Admindashboard extends javax.swing.JFrame {
         jButton6.setText("Scheduling Test");
 
         jButton7.setText("Admission Announcement");
+        jButton7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton7ActionPerformed(evt);
+            }
+        });
 
         jButton8.setText("Admission Confirmation");
         jButton8.addActionListener(new java.awt.event.ActionListener() {
@@ -178,12 +183,10 @@ public class Admindashboard extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton12ActionPerformed
 
     private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
-        // TODO add your handling code here:
+            
         confirmAdmission ca = new confirmAdmission();
         ca.setVisible(true);
-        
-        
-        
+        this.dispose();        
     }//GEN-LAST:event_jButton8ActionPerformed
 
     private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
@@ -191,6 +194,10 @@ public class Admindashboard extends javax.swing.JFrame {
         notifyStudent ns = new notifyStudent();
         ns.setVisible(true);
     }//GEN-LAST:event_jButton9ActionPerformed
+
+    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton7ActionPerformed
 
     /**
      * @param args the command line arguments

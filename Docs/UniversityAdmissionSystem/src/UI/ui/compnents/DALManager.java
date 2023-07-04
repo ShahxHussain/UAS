@@ -35,9 +35,9 @@ public class DALManager {
             ResultSet resultSet = statement.executeQuery();
 
             while (resultSet.next()) {
-                int admissionID = resultSet.getInt("AdmissionID");
-                String studentName = resultSet.getString("StudentName");
-                boolean feeStatus = resultSet.getBoolean("FeeStatus");
+                int admissionID = resultSet.getInt("admissionID");
+                String studentName = resultSet.getString("std_name");
+                boolean feeStatus = resultSet.getBoolean("feeStatus");
 
                 Student student = new Student(admissionID, studentName, feeStatus);
                 students.add(student);
