@@ -23,7 +23,7 @@ public class DALManager {
     private IConnection sql;
 
     public DALManager() {
-        this.sql = new SQLConnection("jdbc:sqlserver://localhost:1433;databaseName=universityadmissionsystem;trustServerCertificate=true;", "sa", "123456");
+        this.sql = new SQLConnection("jdbc:sqlserver://localhost:1433;databaseName=University_Admission_System;trustServerCertificate=true;", "sa", "123456");
     }
 
     public List<Student> getStudents() {
@@ -59,13 +59,13 @@ public class DALManager {
 
         while (resultSet.next()) {
             // Retrieve the question details from the result set
-            String id = resultSet.getString("ID");
-            String description = resultSet.getString("Description");
-            String option1 = resultSet.getString("Option1");
-            String option2 = resultSet.getString("Option2");
-            String option3 = resultSet.getString("Option3");
-            String option4 = resultSet.getString("Option4");
-            String answer = resultSet.getString("Answer");
+            String id = resultSet.getString("testid");
+            String description = resultSet.getString("test_Description");
+            String option1 = resultSet.getString("Option_1");
+            String option2 = resultSet.getString("Option_2");
+            String option3 = resultSet.getString("Option_3");
+            String option4 = resultSet.getString("Option_4");
+            String answer = resultSet.getString("answer");
 
             // Create a new testDTO object and set its properties
             testDTO question = new testDTO();

@@ -70,12 +70,6 @@ public class testDTO {
     public String getTestTime() {
         throw new UnsupportedOperationException("Not supported yet.");
     }
+    
 
-    public String getQuestionText() {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
-
-    public ArrayList<String> getOptions() {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
 }

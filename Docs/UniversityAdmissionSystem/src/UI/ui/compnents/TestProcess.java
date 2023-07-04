@@ -23,9 +23,11 @@ public class TestProcess extends javax.swing.JFrame {
     
     UASController objController;
     
+    int questionIndex = 0;
     public TestProcess() {
         initComponents();
         objController = new UASController();
+        questionList = new ArrayList<>();
         loadTestData();
     }
 
@@ -58,21 +60,21 @@ public class TestProcess extends javax.swing.JFrame {
         jTextArea1.setColumns(20);
         jTextArea1.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         jTextArea1.setRows(5);
-        jTextArea1.setText("Test Question Goes Here");
         jTextArea1.setWrapStyleWord(true);
         jScrollPane1.setViewportView(jTextArea1);
 
         jRadioButton1.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
-        jRadioButton1.setText("Option 1");
 
         jRadioButton2.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
-        jRadioButton2.setText("Option 2");
+        jRadioButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRadioButton2ActionPerformed(evt);
+            }
+        });
 
         jRadioButton3.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
-        jRadioButton3.setText("Option 3");
 
         jRadioButton4.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
-        jRadioButton4.setText("Option 4");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -182,8 +184,12 @@ public class TestProcess extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        nextQuestion(1);
+        nextQuestion();
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jRadioButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jRadioButton2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -236,34 +242,35 @@ public static void main(String args[]) {
     private javax.swing.JTextArea jTextArea1;
     // End of variables declaration//GEN-END:variables
 
-    private void loadTestData() {
-    // Retrieve test questions from the database randomly
-    ArrayList<testDTO> questionList = objController.getTest();
+   private void loadTestData() {
+        // Retrieve test questions from the database randomly
+        questionList = objController.getTest();
 
-    // Check if there are questions available
-    if (!questionList.isEmpty()) {
-        // Get the first question from the list
-        testDTO currentQuestion = questionList.get(0);
+        // Check if there are questions available
+        if (!questionList.isEmpty()) {
+            // Get the first question from the list
+            testDTO currentQuestion = questionList.get(questionIndex);
 
-        // Display the question in the GUI
-        jTextArea1.setText(currentQuestion.getQuestionText());
+            // Display the question in the GUI
+            jTextArea1.setText(currentQuestion.getDescription());
 
-        // Display the options in the radio buttons
-        jRadioButton1.setText(currentQuestion.getOption1());
-        jRadioButton2.setText(currentQuestion.getOption2());
-        jRadioButton3.setText(currentQuestion.getOption3());
-        jRadioButton4.setText(currentQuestion.getOption4());
+            // Display the options in the radio buttons
+            jRadioButton1.setText(currentQuestion.getOption1());
+            jRadioButton2.setText(currentQuestion.getOption2());
+            jRadioButton3.setText(currentQuestion.getOption3());
+            jRadioButton4.setText(currentQuestion.getOption4());
 
-        // Display the test time in the GUI
-        jLabel1.setText(currentQuestion.getTestTime());
-    } else {
-        // If no questions are available, display a message to the user
-        JOptionPane.showMessageDialog(this, "No questions available.");
+            // Display the test time in the GUI
+//            jLabel1.setText(currentQuestion.getTestTime());
+        } else {
+            // If no questions are available, display a message to the user
+            JOptionPane.showMessageDialog(this, "No questions available.");
+        }
     }
-}
+
 
     
-    private void nextQuestion(int questionIndex) {
+    private void nextQuestion() {
     // Check if there are more questions in the test
     if (questionIndex < questionList.size() - 1) {
         questionIndex++; // Move to the next question
@@ -271,41 +278,24 @@ public static void main(String args[]) {
         // Get the next question from the list
         testDTO nextQuestion = questionList.get(questionIndex);
 
-        // Display the next question, options, and time in the GUI components
-        jTextArea1.setText(nextQuestion.getQuestionText());
+        // Display the next question and options in the GUI components
+        jTextArea1.setText(nextQuestion.getDescription());
+        jRadioButton1.setText(nextQuestion.getOption1());
+        jRadioButton2.setText(nextQuestion.getOption2());
+        jRadioButton3.setText(nextQuestion.getOption3());
+        jRadioButton4.setText(nextQuestion.getOption4());
 
-        ArrayList<String> options = nextQuestion.getOptions();
-        if (options.size() >= 1) {
-            jRadioButton1.setText(options.get(0));
-        } else {
-            jRadioButton1.setText("");
-        }
-        if (options.size() >= 2) {
-            jRadioButton2.setText(options.get(1));
-        } else {
-            jRadioButton2.setText("");
-        }
-        if (options.size() >= 3) {
-            jRadioButton3.setText(options.get(2));
-        } else {
-            jRadioButton3.setText("");
-        }
-        if (options.size() >= 4) {
-            jRadioButton4.setText(options.get(3));
-        } else {
-            jRadioButton4.setText("");
-        }
-        jLabel1.setText(nextQuestion.getTestTime());
+        // Clear the selection of radio buttons for the next question
+        jRadioButton1.setSelected(false);
+        jRadioButton2.setSelected(false);
+        jRadioButton3.setSelected(false);
+        jRadioButton4.setSelected(false);
     } else {
         // If there are no more questions, end the test
         endTest();
     }
 }
-    private void endTest() {
-    // Calculate and display the test result
-    int totalQuestions = questionList.size();
-    int correctAnswers = 0;
-//        correctAnswers = test.getCorrectAnswersCount();
+private void showResultMessage(int correctAnswers, int totalQuestions) {
     int incorrectAnswers = totalQuestions - correctAnswers;
     double score = (double) correctAnswers / totalQuestions * 100;
 
@@ -316,6 +306,14 @@ public static void main(String args[]) {
             + "Score: " + score + "%";
 
     JOptionPane.showMessageDialog(this, resultMessage);
+}
+    private void endTest() {
+    // Calculate the number of correct answers
+    int correctAnswers = calculateCorrectAnswers();
+    int totalQuestions = questionList.size();
+
+    // Display the test result
+    showResultMessage(correctAnswers, totalQuestions);
 
     // Close the test window
     dispose();
@@ -324,8 +322,32 @@ public static void main(String args[]) {
     StdDashboard dashboard = new StdDashboard();
     dashboard.setVisible(true);
 }
+    
+private int calculateCorrectAnswers() {
+    int correctAnswers = 0;
+    // Loop through the questionList and check if the selected answer is correct
+    for (testDTO question : questionList) {
+        String selectedAnswer = getSelectedAnswer(question); // Get the selected answer for this question
+        if (selectedAnswer != null && selectedAnswer.equals(question.getAnswer())) {
+            correctAnswers++;
+        }
+    }
+    return correctAnswers;
+}
+   private String getSelectedAnswer(testDTO question) {
+     if (jRadioButton1.isSelected() && jRadioButton1.getText().equals(question.getOption1())) {
+        return jRadioButton1.getText();
+    } else if (jRadioButton2.isSelected() && jRadioButton2.getText().equals(question.getOption2())) {
+        return jRadioButton2.getText();
+    } else if (jRadioButton3.isSelected() && jRadioButton3.getText().equals(question.getOption3())) {
+        return jRadioButton3.getText();
+    } else if (jRadioButton4.isSelected() && jRadioButton4.getText().equals(question.getOption4())) {
+        return jRadioButton4.getText();
+    }
 
-
-
+    // If no option is selected, return null or an appropriate default value.
+    return null;
+}
+   
 }
 
