@@ -8,6 +8,9 @@ package UI.ui.compnents;
  *
  * @author HP 840 G3
  */
+import dal.Student;
+import java.sql.Connection;
+import java.sql.DriverManager;
 import common.StudentDTO;
 import common.Response;
 import java.sql.*;
@@ -15,10 +18,13 @@ import javax.swing.JOptionPane;
 
 public class EnterPersonalinfo extends javax.swing.JFrame {
 
+    private final DALManager dalManager;
+
     /**
      * Creates new form EnterPersonalinfo
      */
     public EnterPersonalinfo() {
+        dalManager = new DALManager();
         initComponents();
     }
 
@@ -58,6 +64,7 @@ public class EnterPersonalinfo extends javax.swing.JFrame {
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("First name");
 
+        jTextField2.setText("Khan");
         jTextField2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField2ActionPerformed(evt);
@@ -68,6 +75,7 @@ public class EnterPersonalinfo extends javax.swing.JFrame {
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Phone No");
 
+        jTextField3.setText("Mahad");
         jTextField3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField3ActionPerformed(evt);
@@ -78,6 +86,7 @@ public class EnterPersonalinfo extends javax.swing.JFrame {
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Last name");
 
+        jTextField4.setText("mahadwajid613@gmail.com");
         jTextField4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField4ActionPerformed(evt);
@@ -88,6 +97,7 @@ public class EnterPersonalinfo extends javax.swing.JFrame {
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("Email");
 
+        jTextField5.setText("1234567");
         jTextField5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField5ActionPerformed(evt);
@@ -98,6 +108,7 @@ public class EnterPersonalinfo extends javax.swing.JFrame {
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setText("Address");
 
+        jTextField6.setText("ABC");
         jTextField6.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField6ActionPerformed(evt);
@@ -215,36 +226,34 @@ public class EnterPersonalinfo extends javax.swing.JFrame {
 
     private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
         // TODO add your handling code here:
+        jTextField2.setText("Khan");
+       
+
     }//GEN-LAST:event_jTextField2ActionPerformed
 
     private void jTextField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField3ActionPerformed
         // TODO add your handling code here:
+       jTextField3.setText("Mahad");
     }//GEN-LAST:event_jTextField3ActionPerformed
 
     private void jTextField4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField4ActionPerformed
         // TODO add your handling code here:
+        jTextField4.setText("mahadwajid613@gmail.com");
     }//GEN-LAST:event_jTextField4ActionPerformed
 
     private void jTextField5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField5ActionPerformed
         // TODO add your handling code here:
+        jTextField5.setText("03426954890");
     }//GEN-LAST:event_jTextField5ActionPerformed
 
     private void jTextField6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField6ActionPerformed
         // TODO add your handling code here:
+        jTextField6.setText("XYZ");
     }//GEN-LAST:event_jTextField6ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        // TODO add your handling code here:
-//        StudentDTO objstu= new StudentDTO();
-//        objstu.Firstname= jTextField2.getText();
-//        objstu.Lastname= jTextField3.getText();
-//        objstu.Email= jTextField4.getText();
-//        objstu.Phoneno= jTextField5.getText();
-//        objstu.Address= jTextField6.getText();    // Database connection details
-    String url = "jdbc:sqlserver://localhost:1433;databaseName=Universityadmissionsystem;trustServerCertificate=true;";
-    String username = "sa";
-    String password = "123456";
 
+ 
     // Student data
     String firstname = jTextField2.getText();
     String lastname = jTextField3.getText();
@@ -271,6 +280,8 @@ public class EnterPersonalinfo extends javax.swing.JFrame {
     objstu.Email = email;
     objstu.Phoneno = phoneno;
     objstu.Address = address;
+    
+ 
 
     // Database connection and data insertion
     try {
@@ -278,7 +289,7 @@ public class EnterPersonalinfo extends javax.swing.JFrame {
         Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
 
         // Establish the database connection
-        Connection conn = DriverManager.getConnection(url, username, password);
+        Connection conn = DriverManager.getConnection("jdbc:sqlserver://localhost:1433;databaseName=Universityadmissionsystem;trustServerCertificate=true;", "sa", "123456");
 
         // Create the SQL query to insert the student data
         String query = "INSERT INTO students (firstname, lastname, email, phoneno, address) VALUES (?, ?, ?, ?, ?)";
@@ -321,7 +332,7 @@ public class EnterPersonalinfo extends javax.swing.JFrame {
         JOptionPane.showMessageDialog(null, "An error occurred while inserting data.");
     }
 
-    // Clear the input fields
+//     Clear the input fields
     jTextField2.setText("");
     jTextField3.setText("");
     jTextField4.setText("");
@@ -346,7 +357,7 @@ private boolean isValidEmail(String email) {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
-            jTextField2.setText("");
+    jTextField2.setText("");
     jTextField3.setText("");
     jTextField4.setText("");
     jTextField5.setText("");
