@@ -8,6 +8,9 @@ package UI.ui.compnents;
  *
  * @author HP 840 G3
  */
+import dal.Student;
+import java.sql.Connection;
+import java.sql.DriverManager;
 import common.StudentDTO;
 import common.Response;
 import java.sql.*;
@@ -15,10 +18,13 @@ import javax.swing.JOptionPane;
 
 public class EnterPersonalinfo extends javax.swing.JFrame {
 
+    private final DALManager dalManager;
+
     /**
      * Creates new form EnterPersonalinfo
      */
     public EnterPersonalinfo() {
+        dalManager = new DALManager();
         initComponents();
     }
 
@@ -234,17 +240,8 @@ public class EnterPersonalinfo extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextField6ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        // TODO add your handling code here:
-//        StudentDTO objstu= new StudentDTO();
-//        objstu.Firstname= jTextField2.getText();
-//        objstu.Lastname= jTextField3.getText();
-//        objstu.Email= jTextField4.getText();
-//        objstu.Phoneno= jTextField5.getText();
-//        objstu.Address= jTextField6.getText();    // Database connection details
-    String url = "jdbc:sqlserver://localhost:1433;databaseName=Universityadmissionsystem;trustServerCertificate=true;";
-    String username = "sa";
-    String password = "123456";
 
+ 
     // Student data
     String firstname = jTextField2.getText();
     String lastname = jTextField3.getText();
@@ -278,7 +275,7 @@ public class EnterPersonalinfo extends javax.swing.JFrame {
         Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
 
         // Establish the database connection
-        Connection conn = DriverManager.getConnection(url, username, password);
+        Connection conn = DriverManager.getConnection("jdbc:sqlserver://localhost:1433;databaseName=Universityadmissionsystem;trustServerCertificate=true;", "sa", "123456");
 
         // Create the SQL query to insert the student data
         String query = "INSERT INTO students (firstname, lastname, email, phoneno, address) VALUES (?, ?, ?, ?, ?)";
