@@ -5,7 +5,7 @@
 package UI.dashboard.components;
 
 import UI.ui.compnents.Publishmeritlist;
-import UI.ui.compnents.confirmAdmission;
+import UI.ui.compnents.admissionConfirmation;
 import UI.ui.compnents.notifyStudent;
 
 /**
@@ -184,7 +184,7 @@ public class Admindashboard extends javax.swing.JFrame {
 
     private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
             
-        confirmAdmission ca = new confirmAdmission();
+        admissionConfirmation ca = new admissionConfirmation();
         ca.setVisible(true);
         this.dispose();        
     }//GEN-LAST:event_jButton8ActionPerformed

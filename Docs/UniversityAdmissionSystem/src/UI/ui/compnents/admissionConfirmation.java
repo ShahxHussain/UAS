@@ -8,12 +8,17 @@ import java.util.List;
 import javax.swing.table.DefaultTableModel;
 
 
-public class confirmAdmission extends javax.swing.JFrame {
+public class admissionConfirmation extends javax.swing.JFrame {
 
-    
     private DALManager dalManager;
+    private final int admissionID;
+    private final String std_name;
+    private final boolean feeStatus;
 
-    public confirmAdmission() {
+    public admissionConfirmation(int admissionID,String std_name,boolean feeStatus) {
+        this.admissionID=admissionID;
+        this.std_name=std_name;
+        this.feeStatus=feeStatus;
         initComponents();
         dalManager = new DALManager();
         
@@ -232,21 +237,23 @@ public class confirmAdmission extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(confirmAdmission.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(admissionConfirmation.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(confirmAdmission.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(admissionConfirmation.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(confirmAdmission.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(admissionConfirmation.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(confirmAdmission.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(admissionConfirmation.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new confirmAdmission().setVisible(true);
+                new admissionConfirmation(1,"",true).setVisible(true);
             }
         });
     }
