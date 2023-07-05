@@ -112,26 +112,7 @@ public class confirmAdmission extends javax.swing.JFrame {
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, "", null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
+
             },
             new String [] {
                 "AdmissionID", "StudentName", "FeeStatus"
@@ -147,6 +128,8 @@ public class confirmAdmission extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(jTable1);
 
+        jButton3.setBackground(new java.awt.Color(0, 128, 128));
+        jButton3.setForeground(new java.awt.Color(255, 255, 255));
         jButton3.setText("Show Selected Students");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -207,24 +190,19 @@ public class confirmAdmission extends javax.swing.JFrame {
         // TODO add your handling code here:
                                               
     DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
-    String std_names = ""; // Variable to store the names of confirmed students
+    int confirmedCount = 0;
 
     for (int i = 0; i < model.getRowCount(); i++) {
         boolean feeStatus = (boolean) model.getValueAt(i, 2);
 
         if (feeStatus) {
-            int admissionID = (int) model.getValueAt(i, 0);
-            String studentName = (String) model.getValueAt(i, 1);
-            std_names += studentName + ", ";
+            confirmedCount++;
         }
-    
-
-    if (!std_names.isEmpty()) {
-        std_names = std_names.substring(0, std_names.length() - 2); // Remove the trailing comma and space
-        String message = "The admission of " + std_names + " is confirmed.";
-        javax.swing.JOptionPane.showMessageDialog(this, message);
     }
-}
+
+    String message = "Admission of " + confirmedCount + " student(s) has been confirmed.";
+    javax.swing.JOptionPane.showMessageDialog(this, message);
+
 
     }//GEN-LAST:event_jButton1ActionPerformed
 
