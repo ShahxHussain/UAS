@@ -9,8 +9,9 @@ import model.IConnection;
 import model.SQLConnection;
 
 public class DALManager {
+    
     private IConnection sql;
-
+    
     public DALManager() {
         this.sql = new SQLConnection("jdbc:sqlserver://localhost:1433;databaseName=universityadmissionsystem;trustServerCertificate=true;", "sa", "123456");
     }
