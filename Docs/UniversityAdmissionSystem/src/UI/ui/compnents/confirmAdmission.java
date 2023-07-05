@@ -3,10 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package UI.ui.compnents;
-
 import dal.Student;
-import java.sql.Connection;
-import java.sql.DriverManager;
 import java.util.List;
 import javax.swing.table.DefaultTableModel;
 
