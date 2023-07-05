@@ -205,8 +205,8 @@ public class admissionConfirmation extends javax.swing.JFrame {
         }
     }
 
-    String message = "Admission of " + confirmedCount + " student(s) has been confirmed.";
-    javax.swing.JOptionPane.showMessageDialog(this, message);
+    String AdmittedStudents = "Admission of " + confirmedCount + " student(s) has been confirmed.";
+    javax.swing.JOptionPane.showMessageDialog(this, AdmittedStudents);
 
 
     }//GEN-LAST:event_jButton1ActionPerformed
