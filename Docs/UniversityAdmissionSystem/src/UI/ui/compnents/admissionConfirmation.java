@@ -1,7 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
+
 package UI.ui.compnents;
 import dal.Student;
 import java.util.List;
@@ -11,14 +8,14 @@ import javax.swing.table.DefaultTableModel;
 public class admissionConfirmation extends javax.swing.JFrame {
 
     private DALManager dalManager;
-    private final int admissionID;
-    private final String std_name;
-    private final boolean feeStatus;
+    private final int admissionID = 0;
+    private final String std_name = null;
+    private final boolean feeStatus = false;
 
-    public admissionConfirmation(int admissionID,String std_name,boolean feeStatus) {
-        this.admissionID=admissionID;
-        this.std_name=std_name;
-        this.feeStatus=feeStatus;
+    public admissionConfirmation() {
+//        this.admissionID=admissionID;
+//        this.std_name=std_name;
+//        this.feeStatus=feeStatus;
         initComponents();
         dalManager = new DALManager();
         
@@ -253,7 +250,7 @@ public class admissionConfirmation extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new admissionConfirmation(1,"",true).setVisible(true);
+                new admissionConfirmation().setVisible(true);
             }
         });
     }
