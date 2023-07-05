@@ -23,7 +23,7 @@ public class DALManager {
     private IConnection sql;
 
     public DALManager() {
-        this.sql = new SQLConnection("jdbc:sqlserver://localhost:1433;databaseName=University_Admission_System;trustServerCertificate=true;", "sa", "123456");
+        this.sql = new SQLConnection("jdbc:sqlserver://localhost:1433;databaseName=universityadmissionsystem;trustServerCertificate=true;", "sa", "123456");
     }
 
     public List<Student> getStudents() {
