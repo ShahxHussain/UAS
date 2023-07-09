@@ -1,22 +1,23 @@
 package controller;
+
 import common.PublishDTO;
 import dal.DALManager;
 import model.publishFactory;
 import UI.ui.compnents.Publishmeritlist;
+
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.util.List;
-
 
 public class publishController {
     private Publishmeritlist ui;
     private DALManager dalManager;
     private publishValidator validator;
+    private boolean isDataPublished = false;
 
     public publishController(Publishmeritlist ui) {
         this.ui = ui;
-      this.dalManager = publishFactory.createDALManager(publishFactory.createConnection("jdbc:sqlserver://localhost:1433;databaseName=universityadmissionsystem;trustServerCertificate=true;", "sa", "123456"));
-
+        this.dalManager = publishFactory.createDALManager(publishFactory.createConnection("jdbc:sqlserver://localhost:1433;databaseName=universityadmissionsystem;trustServerCertificate=true;", "sa", "123456"));
         this.validator = publishFactory.createValidator();
         attachEventListeners();
     }
@@ -24,35 +25,33 @@ public class publishController {
     private void attachEventListeners() {
         ui.getJButton6().addActionListener(e -> onViewButtonClicked());
         ui.getJButton3().addActionListener(e -> onPublishButtonClicked());
+        ui.getJButton8().addActionListener(e -> onModifyButtonClicked());
+        ui.getJButton1().addActionListener(e -> onDeleteButtonClicked());
     }
 
-  public void onViewButtonClicked() {
-    List<PublishDTO> students = dalManager.getAllStudents();
+    public void onViewButtonClicked() {
+        List<PublishDTO> students = dalManager.getAllStudents();
+        DefaultTableModel model = (DefaultTableModel) ui.getJTable4().getModel();
+        model.setRowCount(0);
 
-    DefaultTableModel model = (DefaultTableModel) ui.getJTable4().getModel();
-    model.setRowCount(0);
-
-    for (PublishDTO student : students) {
-        Object[] rowData = {
-                student.getStudentID(),
-                student.getStudentName(),
-                student.getTestResult(),
-                student.getPercentage()
-        };
-        model.addRow(rowData);
+        for (PublishDTO student : students) {
+            Object[] rowData = {
+                    student.getStudentID(),
+                    student.getStudentName(),
+                    student.getTestResult(),
+                    student.getPercentage()
+            };
+            model.addRow(rowData);
+        }
     }
-}
-
-
-
-
-
-
-
-
-
 
     public void onPublishButtonClicked() {
+        if (isDataPublished) {
+            // Data has already been published, return or show a message
+            JOptionPane.showMessageDialog(ui, "Data has already been published.", "Information", JOptionPane.INFORMATION_MESSAGE);
+            return;
+        }
+
         PublishDTO student = ui.getStudentData();
 
         if (!validator.validateStudent(student)) {
@@ -62,8 +61,9 @@ public class publishController {
 
         dalManager.saveStudent(student);
         JOptionPane.showMessageDialog(ui, "Student data published successfully", "Success", JOptionPane.INFORMATION_MESSAGE);
+
+        isDataPublished = true; // Update the flag to indicate data has been published
     }
-   
 
     public void onModifyButtonClicked() {
         PublishDTO student = ui.getStudentData();
@@ -85,11 +85,12 @@ public class publishController {
 
             // Update the data in the database
             dalManager.updateStudent(student);
+            JOptionPane.showMessageDialog(ui, "Student data modified successfully", "Success", JOptionPane.INFORMATION_MESSAGE);
         } else {
             JOptionPane.showMessageDialog(ui, "No row selected", "Error", JOptionPane.ERROR_MESSAGE);
         }
     }
-    
+
     public void onDeleteButtonClicked() {
         int selectedRow = ui.getJTable4().getSelectedRow();
 
@@ -101,10 +102,9 @@ public class publishController {
             // Delete the data from the database
             PublishDTO student = ui.getStudentData();
             dalManager.deleteStudent(student);
-        } else {
-            JOptionPane.showMessageDialog(ui, "No row selected", "Error", JOptionPane.ERROR_MESSAGE);
-        }
+        } 
     }
+
     public static void main(String[] args) {
         SwingUtilities.invokeLater(() -> {
             Publishmeritlist ui = new Publishmeritlist();
@@ -112,5 +112,4 @@ public class publishController {
             ui.setVisible(true);
         });
     }
-
 }
