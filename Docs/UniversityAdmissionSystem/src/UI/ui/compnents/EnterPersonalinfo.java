@@ -18,7 +18,7 @@ public class EnterPersonalinfo extends javax.swing.JFrame {
      * Creates new form EnterPersonalinfo
      */
     public EnterPersonalinfo() {
-        dalManager = new DALManager();
+        dalManager = new DALManager(connectionProvider);
         initComponents();
     }
 

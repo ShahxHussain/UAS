@@ -19,7 +19,7 @@ public class UASController {
     
     public UASController()
     { 
-        objTest  = new DALManager();
+        objTest  = new DALManager(connectionProvider);
     }
 //    
 ////Mahad Wajid (Fa21-bse-057 ) Use Case: Enter Personal Info 

@@ -17,7 +17,7 @@ public class admissionConfirmation extends javax.swing.JFrame {
 //        this.std_name=std_name;
 //        this.feeStatus=feeStatus;
         initComponents();
-        dalManager = new DALManager();
+        dalManager = new DALManager(connectionProvider);
         
     }
 

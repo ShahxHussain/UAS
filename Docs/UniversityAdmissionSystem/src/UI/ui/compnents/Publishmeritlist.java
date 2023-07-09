@@ -4,9 +4,10 @@
  */
 package UI.ui.compnents;
 
+import common.PublishDTO;
+import controller.publishController;
 import java.awt.Font;
-import javax.swing.JLabel;
-import javax.swing.JOptionPane;
+import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -15,13 +16,40 @@ import javax.swing.table.DefaultTableModel;
  */
 public class Publishmeritlist extends javax.swing.JFrame {
 
-    /**
-     * Creates new form Publishmeritlist
-     */
-    public Publishmeritlist() {
-        initComponents();
+private publishController controller;
+private Publishmeritlist ui; // Define the ui variable
+
+public Publishmeritlist() {
+    initComponents();
+    ui = this; // Assign the current instance to the ui variable
+    controller = new publishController(ui);
+}
+public PublishDTO getStudentData() {
+    PublishDTO student = new PublishDTO();
+
+    // Get the selected row from the table
+    int selectedRow = jTable4.getSelectedRow();
+    if (selectedRow >= 0) {
+        // Get the data from the selected row and set it in the student object
+        student.setStudentID((int) jTable4.getValueAt(selectedRow, 0));
+        student.setStudentName((String) jTable4.getValueAt(selectedRow, 1));
+        student.setTestResult((int) jTable4.getValueAt(selectedRow, 2));
+        student.setPercentage((double) jTable4.getValueAt(selectedRow, 3));
     }
 
+    return student;
+}
+
+public JButton getJButton6() {
+    return jButton6;
+}
+
+public JButton getJButton3() {
+    return jButton3;
+}
+public JTable getJTable4() {
+    return jTable4;
+}
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -153,7 +181,7 @@ public class Publishmeritlist extends javax.swing.JFrame {
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(172, Short.MAX_VALUE)
                 .addComponent(jLabel2)
                 .addGap(26, 26, 26)
                 .addComponent(jButton5)
@@ -239,11 +267,11 @@ public class Publishmeritlist extends javax.swing.JFrame {
                         .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 710, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addContainerGap())
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                        .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 710, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap())
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                         .addComponent(jLabel1)
-                        .addGap(255, 255, 255))))
+                        .addGap(255, 255, 255))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                        .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 422, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(144, 144, 144))))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -254,8 +282,8 @@ public class Publishmeritlist extends javax.swing.JFrame {
                 .addComponent(jCheckBox1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 3, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 40, Short.MAX_VALUE)
-                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 332, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 344, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 12, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -284,6 +312,8 @@ public class Publishmeritlist extends javax.swing.JFrame {
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
         // TODO add your handling code here:
+    publishController controller = new publishController(ui);
+    controller.onViewButtonClicked();
     }//GEN-LAST:event_jButton6ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -371,4 +401,7 @@ public class Publishmeritlist extends javax.swing.JFrame {
     private javax.swing.JTable jTable3;
     private javax.swing.JTable jTable4;
     // End of variables declaration//GEN-END:variables
+
+   
+   
 }
