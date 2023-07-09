@@ -57,17 +57,34 @@ public class DALManager {
 
     // Other database operations...
 
-    public void deleteStudent(int studentID) {
-        try (Connection connection = connectionProvider.getConnection();
-             PreparedStatement statement = connection.prepareStatement("DELETE FROM Testresult WHERE studentID = ?")) {
-
-            statement.setInt(1, studentID);
-            statement.executeUpdate();
-
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+ 
+public void deleteStudent(PublishDTO student) {
+    String query = "DELETE FROM Testresult WHERE studentID = ?";
+    try (Connection connection = connectionProvider.getConnection();
+         PreparedStatement statement = connection.prepareStatement(query)) {
+        statement.setInt(1, student.getStudentID());
+        statement.executeUpdate();
+    } catch (SQLException e) {
+        e.printStackTrace();
+        // Handle the exception or throw it to the calling code
     }
+}
+
+public void updateStudent(PublishDTO student) {
+    String query = "UPDATE Testresult SET student_name = ?, testresult = ?, percentage = ? WHERE studentID = ?";
+    try (Connection connection = connectionProvider.getConnection();
+         PreparedStatement statement = connection.prepareStatement(query)) {
+        statement.setString(1, student.getStudentName());
+        statement.setInt(2, student.getTestResult());
+        statement.setDouble(3, student.getPercentage());
+        statement.setInt(4, student.getStudentID());
+        statement.executeUpdate();
+    } catch (SQLException e) {
+        e.printStackTrace();
+        // Handle the exception or throw it to the calling code
+    }
+}
+
 
     // ...
 }

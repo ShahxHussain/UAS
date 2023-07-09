@@ -308,6 +308,8 @@ public JTable getJTable4() {
 
     private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
         // TODO add your handling code here:
+        publishController controller = new publishController(ui);
+        controller.onModifyButtonClicked();
     }//GEN-LAST:event_jButton8ActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
@@ -318,21 +320,27 @@ public JTable getJTable4() {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
+         publishController controller = new publishController(ui);
+        controller.onDeleteButtonClicked();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-        // TODO add your handling code here:
-            // TODO add your handling code here:
-//            jTable1.setModel(new DefaultTableModel());
+   // TODO add your handling code here:
+// TODO add your handling code here:
+// jTable1.setModel(new DefaultTableModel());
 
-    // Display the welcome message in a dialog box
-    String message = "Welcome to the Dashboard!";
-    Font font = new Font("Arial", Font.BOLD, 24); // Adjust the font properties as desired
+// Display the welcome message in a dialog box
+String message = "Welcome to the Dashboard!";
+Font font = new Font("Arial", Font.BOLD, 35); // Adjust the font properties as desired
 
-    JLabel label = new JLabel(message);
-    label.setFont(font);
+JLabel label = new JLabel(message);
+label.setFont(font);
 
-    JOptionPane.showMessageDialog(this, label, "Dashboard", JOptionPane.PLAIN_MESSAGE);
+JOptionPane.showMessageDialog(this, label, "Dashboard", JOptionPane.PLAIN_MESSAGE);
+
+// Clear the background of the JTable
+jTable4.setBackground(null);
+
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void jCheckBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox1ActionPerformed
