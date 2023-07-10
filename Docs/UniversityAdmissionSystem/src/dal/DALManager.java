@@ -73,5 +73,94 @@ public void updateStudent(PublishDTO student) {
 
     // ...
 
+<<<<<<< Updated upstream
     
+=======
+   public List<Student> getStudents() {
+    List<Student> students = new ArrayList<>();
+
+    try {
+        Connection connection = connectionProvider.getConnection();
+        
+        String query = "SELECT * FROM STUDENTS";
+        PreparedStatement statement = connection.prepareStatement(query);
+        ResultSet resultSet = statement.executeQuery();
+
+        while (resultSet.next()) {
+            int admissionID = resultSet.getInt("admissionID");
+            String studentName = resultSet.getString("std_name");
+            boolean feeStatus = resultSet.getBoolean("feeStatus");
+
+            Student student = new Student(admissionID, studentName, feeStatus);
+            students.add(student);
+        }
+
+        resultSet.close();
+        statement.close();
+        connection.close();
+    } catch (Exception e) {
+        e.printStackTrace();
+    }
+
+    return students;
+>>>>>>> Stashed changes
 }
+
+public List<Student> getUnpaidStudents() {
+    List<Student> unpaidStudents = new ArrayList<>();
+
+    try {
+        Connection connection = connectionProvider.getConnection();
+      
+        String query = "SELECT * FROM STUDENTS WHERE feeStatus = 0";
+        PreparedStatement statement = connection.prepareStatement(query);
+        ResultSet resultSet = statement.executeQuery();
+
+        while (resultSet.next()) {
+            int admissionID = resultSet.getInt("admissionID");
+            String studentName = resultSet.getString("std_name");
+            boolean feeStatus = resultSet.getBoolean("feeStatus");
+
+            Student student = new Student(admissionID, studentName, feeStatus);
+            unpaidStudents.add(student);
+             }
+
+        resultSet.close();
+        statement.close();
+        connection.close();
+    } catch (Exception e) {
+        e.printStackTrace();
+    }
+
+    return unpaidStudents;
+}
+
+public List<Student> getPaidStudents() {
+    List<Student> paidStudents = new ArrayList<>();
+
+    try {
+        Connection connection = connectionProvider.getConnection();
+        
+        String query = "SELECT * FROM STUDENTS WHERE feeStatus = 1";
+        PreparedStatement statement = connection.prepareStatement(query);
+        ResultSet resultSet = statement.executeQuery();
+
+        while (resultSet.next()) {
+            int admissionID = resultSet.getInt("admissionID");
+            String studentName = resultSet.getString("std_name");
+            boolean feeStatus = resultSet.getBoolean("feeStatus");
+
+            Student student = new Student(admissionID, studentName, feeStatus);
+            paidStudents.add(student);
+        }
+
+        resultSet.close();
+        statement.close();
+        connection.close();
+    } catch (Exception e) {
+        e.printStackTrace();
+    }
+    return paidStudents;
+}
+}
+

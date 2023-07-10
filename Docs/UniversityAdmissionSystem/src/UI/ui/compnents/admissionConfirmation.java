@@ -6,14 +6,14 @@ import javax.swing.table.DefaultTableModel;
 import model.IConnection;
 
 
-public class NotifyStudentss extends javax.swing.JFrame {
+public class admissionConfirmation extends javax.swing.JFrame {
 
     private DALManager dalManager;
     private final int admissionID = 0;
     private final String std_name = null;
     private final boolean feeStatus = false;
 
-    public NotifyStudentss() {
+    public admissionConfirmation() {
 //        this.admissionID=admissionID;
 //        this.std_name=std_name;
 //        this.feeStatus=feeStatus;
@@ -256,7 +256,7 @@ public class NotifyStudentss extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new NotifyStudentss().setVisible(true);
+                new admissionConfirmation().setVisible(true);
             }
         });
     }

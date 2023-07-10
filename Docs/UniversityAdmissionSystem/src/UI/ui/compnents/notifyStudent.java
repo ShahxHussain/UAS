@@ -6,32 +6,38 @@ package UI.ui.compnents;
 
 
 
-import controller.confrimAdmissionController;
+import controller.notifyStudentController;
 import model.SQLConnection;
 import model.StudentModel;
 import dal.DALManager;
+import dal.Student;
+import java.util.List;
+import javax.swing.table.DefaultTableModel;
 import model.IConnection;
 
 
-/**
- *
- * @author DELL
- */
+
 public class notifyStudent extends javax.swing.JFrame {
+    private notifyStudentController controller;
 
-    /**
-     * Creates new form notifyStudent
-     */
+    
+    
    public notifyStudent() {
-    initComponents();
-    SQLConnection sqlConnection = new SQLConnection("jdbc:sqlserver://localhost:1433;databaseName=universityadmissionsystem;trustServerCertificate=true;", "sa", "123456");
-    IConnection connectionProvider = null;
-    DALManager dalManager = new DALManager(connectionProvider);
-    StudentModel model = new StudentModel();
-    confrimAdmissionController controller = new confrimAdmissionController(dalManager, model);
-}
+        initComponents();
+        IConnection connectionProvider = new SQLConnection("jdbc:sqlserver://localhost:1433;databaseName=universityadmissionsystem;trustServerCertificate=true;", "sa", "123456");
+        DALManager dalManager = new DALManager(connectionProvider);
+        StudentModel model = new StudentModel();
+        controller = new notifyStudentController(dalManager, model);
+    }
 
-
+//public notifyStudent() {
+//        initComponents();
+//        IConnection connectionProvider;
+//        IConnection IConnection = null;
+//    DALManager dalManager = new DALManager(IConnection);
+//    StudentModel model = new StudentModel();
+//    controller = new notifyStudentController(dalManager, model);
+//    }
 
     
     
@@ -77,6 +83,7 @@ public class notifyStudent extends javax.swing.JFrame {
         jLabel3.setText("STUDENTS");
 
         jButton3.setText("MeritList Announcement");
+        jButton3.setPreferredSize(new java.awt.Dimension(158, 23));
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton3ActionPerformed(evt);
@@ -84,8 +91,19 @@ public class notifyStudent extends javax.swing.JFrame {
         });
 
         jButton4.setText("Fee Submission");
+        jButton4.setPreferredSize(new java.awt.Dimension(158, 23));
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
 
         jButton5.setText("Admission Confirmation");
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -101,13 +119,15 @@ public class notifyStudent extends javax.swing.JFrame {
                         .addComponent(jLabel3)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(43, 43, 43)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jButton3)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jButton5)
-                        .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(44, 44, 44)
+                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 49, Short.MAX_VALUE))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -116,12 +136,12 @@ public class notifyStudent extends javax.swing.JFrame {
                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel3)
-                .addGap(86, 86, 86)
-                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(198, 198, 198)
+                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -149,10 +169,7 @@ public class notifyStudent extends javax.swing.JFrame {
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null}
+
             },
             new String [] {
                 "admissionID", "std_name"
@@ -208,7 +225,48 @@ public class notifyStudent extends javax.swing.JFrame {
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
+        List<Student> students = controller.getStudents();
+
+        DefaultTableModel model = new DefaultTableModel();
+        model.addColumn("AdmissionID");
+        model.addColumn("Student Name");
+
+        for (Student student : students) {
+            model.addRow(new Object[]{student.getAdmissionID(), student.getStudentName()});
+        }
+
+        jTable1.setModel(model);
     }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        // TODO add your handling code here:
+        List<Student> students = controller.getUnpaidStudents();
+
+        DefaultTableModel model = new DefaultTableModel();
+        model.addColumn("AdmissionID");
+        model.addColumn("Student Name");
+
+        for (Student student : students) {
+            model.addRow(new Object[]{student.getAdmissionID(), student.getStudentName()});
+        }
+
+        jTable1.setModel(model);
+    }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        // TODO add your handling code here:
+         List<Student> students = controller.getPaidStudents();
+
+        DefaultTableModel model = new DefaultTableModel();
+        model.addColumn("AdmissionID");
+        model.addColumn("Student Name");
+
+        for (Student student : students) {
+            model.addRow(new Object[]{student.getAdmissionID(), student.getStudentName()});
+        }
+
+        jTable1.setModel(model);
+    }//GEN-LAST:event_jButton5ActionPerformed
 
     /**
      * @param args the command line arguments

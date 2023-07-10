@@ -23,7 +23,8 @@ public class DALManager {
     public List<Student> getStudents() {
         List<Student> students = new ArrayList<>();
 
-        try (Connection connection = sql.getConnection()) {
+        try (
+                Connection connection = sql.getConnection()) {
             String query = "SELECT * FROM Students";
             PreparedStatement statement = connection.prepareStatement(query);
             ResultSet resultSet = statement.executeQuery();
@@ -41,6 +42,66 @@ public class DALManager {
         }
 
         return students;
+    }
+    
+    
+    public List<Student> getUnpaidStudents() {
+        // Implement the logic to retrieve unpaid students from the database
+        List<Student> unpaidStudents = new ArrayList<>();
+
+        try {
+            Connection connection = sql.getConnection();
+            
+            String query = "SELECT * FROM STUDENTS WHERE feeStatus = 0";
+            PreparedStatement statement = connection.prepareStatement(query);
+            ResultSet resultSet = statement.executeQuery(query);
+
+            while (resultSet.next()) {
+                int admissionID = resultSet.getInt("admissionID");
+                String studentName = resultSet.getString("std_name");
+                boolean feeStatus = resultSet.getBoolean("feeStatus");
+
+                Student student = new Student(admissionID, studentName, feeStatus);
+                unpaidStudents.add(student);
+            }
+
+            resultSet.close();
+            statement.close();
+            connection.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return unpaidStudents;
+    }
+    
+    public List<Student> getPaidStudents() {
+        // Implement the logic to retrieve paid students from the database
+        List<Student> paidStudents = new ArrayList<>();
+
+        try {
+            Connection connection = sql.getConnection();;
+            String query = "SELECT * FROM STUDENTS WHERE feeStatus = 1";
+            PreparedStatement statement = connection.prepareStatement(query);
+            ResultSet resultSet = statement.executeQuery(query);
+
+            while (resultSet.next()) {
+                int admissionID = resultSet.getInt("admissionID");
+                String studentName = resultSet.getString("std_name");
+                boolean feeStatus = resultSet.getBoolean("feeStatus");
+
+                Student student = new Student(admissionID, studentName, feeStatus);
+                paidStudents.add(student);
+            }
+
+            resultSet.close();
+            statement.close();
+            connection.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return paidStudents;
     }
 
    public ArrayList<testDTO> getTestQuestions() {
