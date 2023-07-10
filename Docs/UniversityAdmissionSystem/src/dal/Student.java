@@ -30,5 +30,9 @@ public class Student {
     public boolean isFeePaid() {
         return feeStatus;
     }
+
+    public boolean isFeeStatus() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
 }
 

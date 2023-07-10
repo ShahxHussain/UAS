@@ -15,17 +15,11 @@ import java.util.List;
 import model.IConnection;
 import model.SQLConnection;
 
-/**
- *
- * @author DELL
- */
+
 public class DALManager {
     private IConnection sql;
 
-    public DALManager(IConnection connectionProvider) {
-        this.sql = new SQLConnection("jdbc:sqlserver://localhost:1433;databaseName=universityadmissionsystem;trustServerCertificate=true;", "sa", "123456");
-    }
-
+  
     public List<Student> getStudents() {
         List<Student> students = new ArrayList<>();
 
