@@ -22,12 +22,13 @@ public class publishController {
         attachEventListeners();
     }
 
-    private void attachEventListeners() {
-        ui.getJButton6().addActionListener(e -> onViewButtonClicked());
-        ui.getJButton3().addActionListener(e -> onPublishButtonClicked());
-        ui.getJButton8().addActionListener(e -> onModifyButtonClicked());
-        ui.getJButton1().addActionListener(e -> onDeleteButtonClicked());
-    }
+ private void attachEventListeners() {
+    ui.getJButton6().addActionListener(e -> onViewButtonClicked());
+    ui.getJButton3().addActionListener(e -> onPublishButtonClicked());
+    ui.getJButton8().addActionListener(e -> onModifyButtonClicked());
+    ui.getJButton1().addActionListener(e -> onDeleteButtonClicked());
+}
+
 
     public void onViewButtonClicked() {
         List<PublishDTO> students = dalManager.getAllStudents();
@@ -46,64 +47,77 @@ public class publishController {
     }
 
     public void onPublishButtonClicked() {
-        if (isDataPublished) {
-            // Data has already been published, return or show a message
-            JOptionPane.showMessageDialog(ui, "Data has already been published.", "Information", JOptionPane.INFORMATION_MESSAGE);
-            return;
-        }
+//    if (isDataPublished) {
+//        // Data has already been published, return or show a message
+//        JOptionPane.showMessageDialog(ui, "Data has already been published.", "Information", JOptionPane.INFORMATION_MESSAGE);
+//        return;
+//    }
 
-        PublishDTO student = ui.getStudentData();
+    PublishDTO student = ui.getStudentData();
 
-        if (!validator.validateStudent(student)) {
-            JOptionPane.showMessageDialog(ui, "Invalid student data", "Validation Error", JOptionPane.ERROR_MESSAGE);
-            return;
-        }
-
-        dalManager.saveStudent(student);
-        JOptionPane.showMessageDialog(ui, "Student data published successfully", "Success", JOptionPane.INFORMATION_MESSAGE);
-
-        isDataPublished = true; // Update the flag to indicate data has been published
+    if (!validator.validateStudent(student)) {
+        // Validation failed, return without publishing
+        return;
     }
 
-    public void onModifyButtonClicked() {
-        PublishDTO student = ui.getStudentData();
+    dalManager.saveStudent(student);
+//    JOptionPane.showMessageDialog(ui, "Student data published successfully", "Success", JOptionPane.INFORMATION_MESSAGE);
 
-        if (!validator.validateStudent(student)) {
-            JOptionPane.showMessageDialog(ui, "Invalid student data", "Validation Error", JOptionPane.ERROR_MESSAGE);
-            return;
-        }
+    isDataPublished = true; // Update the flag to indicate data has been published
+}
+public void onModifyButtonClicked() {
+    PublishDTO student = ui.getStudentData();
 
-        int selectedRow = ui.getJTable4().getSelectedRow();
-
-        if (selectedRow >= 0) {
-            // Update the data in the table
-            DefaultTableModel model = (DefaultTableModel) ui.getJTable4().getModel();
-            model.setValueAt(student.getStudentID(), selectedRow, 0);
-            model.setValueAt(student.getStudentName(), selectedRow, 1);
-            model.setValueAt(student.getTestResult(), selectedRow, 2);
-            model.setValueAt(student.getPercentage(), selectedRow, 3);
-
-            // Update the data in the database
-            dalManager.updateStudent(student);
-            JOptionPane.showMessageDialog(ui, "Student data modified successfully", "Success", JOptionPane.INFORMATION_MESSAGE);
-        } else {
-            JOptionPane.showMessageDialog(ui, "No row selected", "Error", JOptionPane.ERROR_MESSAGE);
-        }
+    if (!validator.validateStudent(student)) {
+        JOptionPane.showMessageDialog(ui, "Invalid student data", "Validation Error", JOptionPane.ERROR_MESSAGE);
+        return;
     }
 
-    public void onDeleteButtonClicked() {
-        int selectedRow = ui.getJTable4().getSelectedRow();
+    int selectedRow = ui.getJTable4().getSelectedRow();
 
-        if (selectedRow >= 0) {
+    if (selectedRow >= 0) {
+        // Update the data in the table
+        DefaultTableModel model = (DefaultTableModel) ui.getJTable4().getModel();
+        model.setValueAt(student.getStudentID(), selectedRow, 0);
+        model.setValueAt(student.getStudentName(), selectedRow, 1);
+        model.setValueAt(student.getTestResult(), selectedRow, 2);
+        model.setValueAt(student.getPercentage(), selectedRow, 3);
+
+        // Update the data in the database
+        dalManager.updateStudent(student);
+
+        JOptionPane.showMessageDialog(ui, "Student data modified successfully", "Success", JOptionPane.INFORMATION_MESSAGE);
+    } else {
+        JOptionPane.showMessageDialog(ui, "Please select a row to modify", "Error", JOptionPane.ERROR_MESSAGE);
+    }
+}
+
+
+
+
+public void onDeleteButtonClicked() {
+    int selectedRow = ui.getJTable4().getSelectedRow();
+
+    if (selectedRow >= 0) {
+        int confirmResult = JOptionPane.showConfirmDialog(ui, "Are you sure you want to delete this student?", "Confirmation", JOptionPane.YES_NO_OPTION);
+
+        if (confirmResult == JOptionPane.YES_OPTION) {
             // Remove the row from the table
             DefaultTableModel model = (DefaultTableModel) ui.getJTable4().getModel();
+            PublishDTO student = new PublishDTO();
+            student.setStudentID((int) model.getValueAt(selectedRow, 0)); // Get the student ID from the table
             model.removeRow(selectedRow);
 
             // Delete the data from the database
-            PublishDTO student = ui.getStudentData();
             dalManager.deleteStudent(student);
-        } 
-    }
+            JOptionPane.showMessageDialog(ui, "Student data deleted successfully", "Success", JOptionPane.INFORMATION_MESSAGE);
+        }
+    } 
+//    else {
+//        JOptionPane.showMessageDialog(ui, "No row selected", "Error", JOptionPane.ERROR_MESSAGE);
+//    }
+}
+
 
     public static void main(String[] args) {
         SwingUtilities.invokeLater(() -> {
