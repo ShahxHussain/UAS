@@ -39,22 +39,7 @@ public class DALManager {
         return students;
     }
 
-    public void saveStudent(PublishDTO student) {
-        try (Connection connection = connectionProvider.getConnection();
-             PreparedStatement statement = connection.prepareStatement("INSERT INTO Testresult (studentID, student_name, testresult, percentage) VALUES (?, ?, ?, ?)")) {
-
-            statement.setInt(1, student.getStudentID());
-            statement.setString(2, student.getStudentName());
-            statement.setInt(3, student.getTestResult());
-            statement.setDouble(4, student.getPercentage());
-
-            statement.executeUpdate();
-
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-    }
-
+  
     // Other database operations...
 
  

@@ -10,7 +10,7 @@ public class publishValidator {
         System.out.println("nakar");
         return false;
     }else{
-        System.out.println("ku bar bar a raha ha tu");
+//        System.out.println("ku bar bar a raha ha tu");
     return true;}
     
 }

@@ -53,17 +53,17 @@ public void onPublishButtonClicked() {
         PublishDTO student = ui.getStudentData(selectedRow);
 
         dalManager.updateStudent(student);
-        JOptionPane.showMessageDialog(ui, "Student data published successfully", "Success", JOptionPane.INFORMATION_MESSAGE);
+//        JOptionPane.showMessageDialog(ui, "Student data published successfully", "Success", JOptionPane.INFORMATION_MESSAGE);
 
         isDataPublished = true; // Update the flag to indicate data has been published
-    } else {
-        JOptionPane.showMessageDialog(ui, "Please select a row to publish", "Error", JOptionPane.ERROR_MESSAGE);
-    }
+    } 
+//    else {
+//        JOptionPane.showMessageDialog(ui, "Please select a row to publish", "Error", JOptionPane.ERROR_MESSAGE);
+//    }
 }
 
 
-    
-public void onModifyButtonClicked() {
+    public void onModifyButtonClicked() {
     int[] selectedRows = ui.getJTable4().getSelectedRows(); // Get the selected rows
 
     if (selectedRows.length == 0) {
@@ -73,24 +73,9 @@ public void onModifyButtonClicked() {
 
     for (int selectedRow : selectedRows) {
         PublishDTO student = ui.getStudentData(selectedRow); // Pass the selected row as an argument
-
-        if (!validator.validateStudent(student)) {
-            JOptionPane.showMessageDialog(ui, "Invalid student data", "Validation Error", JOptionPane.ERROR_MESSAGE);
-            return;
-        }
-
-        // Update the data in the table
-//        DefaultTableModel model = (DefaultTableModel) ui.getJTable4().getModel();
-//        model.setValueAt(student.getStudentID(), selectedRow, 0);
-//        model.setValueAt(student.getStudentName(), selectedRow, 1);
-//        model.setValueAt(student.getTestResult(), selectedRow, 2);
-//        model.setValueAt(student.getPercentage(), selectedRow, 3);
-
         // Update the data in the database
         dalManager.updateStudent(student);
     }
-
-    JOptionPane.showMessageDialog(ui, "Student data modified successfully", "Success", JOptionPane.INFORMATION_MESSAGE);
 }
 
 
