@@ -24,21 +24,19 @@ public Publishmeritlist() {
     ui = this; // Assign the current instance to the ui variable
     controller = new publishController(ui);
 }
-public PublishDTO getStudentData() {
+public PublishDTO getStudentData(int selectedRow) {
     PublishDTO student = new PublishDTO();
 
-    // Get the selected row from the table
-    int selectedRow = jTable4.getSelectedRow();
-    if (selectedRow >= 0) {
-        // Get the data from the UI components and set it in the student object
-        student.setStudentID((int) jTable4.getValueAt(selectedRow, 0));
-        student.setStudentName((String) jTable4.getValueAt(selectedRow, 1));
-        student.setTestResult((int) jTable4.getValueAt(selectedRow, 2));
-        student.setPercentage((double) jTable4.getValueAt(selectedRow, 3));
-    }
+    // Get the data from the UI components and set it in the student object
+    student.setStudentID((int) jTable4.getValueAt(selectedRow, 0));
+    student.setStudentName((String) jTable4.getValueAt(selectedRow, 1));
+    student.setTestResult((int) jTable4.getValueAt(selectedRow, 2));
+    student.setPercentage((double) jTable4.getValueAt(selectedRow, 3));
 
     return student;
 }
+
+
 
 
 public JButton getJButton6() {
