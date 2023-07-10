@@ -8,7 +8,6 @@ package UI.ui.compnents;
  *
  * @author HP 840 G3
  */
-
 import controller.StudentRegistrationController;
 import model.IConnection;
 public class EnterPersonalinfo extends javax.swing.JFrame {

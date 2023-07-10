@@ -87,6 +87,18 @@ public class DALManager {
     return testQuestions;
 }
 
+   public void saveAnnouncement(String text) {
+    try (Connection connection = sql.getConnection()) {
+        String query = "INSERT INTO Announcements (text) VALUES (?)";
+        PreparedStatement statement = connection.prepareStatement(query);
+        statement.setString(1, text);
+        statement.executeUpdate();
+    } catch (SQLException e) {
+        e.printStackTrace();
+    }
+}
+
+
 
 }
 
