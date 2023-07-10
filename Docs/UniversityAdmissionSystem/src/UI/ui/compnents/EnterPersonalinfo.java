@@ -10,9 +10,11 @@ package UI.ui.compnents;
  */
 
 import controller.StudentRegistrationController;
+import model.IConnection;
 public class EnterPersonalinfo extends javax.swing.JFrame {
 
     private final DALManager dalManager;
+    private IConnection connectionProvider;
 
     /**
      * Creates new form EnterPersonalinfo
