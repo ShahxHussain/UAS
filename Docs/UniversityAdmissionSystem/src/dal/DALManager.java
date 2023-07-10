@@ -71,11 +71,7 @@ public void updateStudent(PublishDTO student) {
 }
 
 
-    // ...
-
-<<<<<<< Updated upstream
     
-=======
    public List<Student> getStudents() {
     List<Student> students = new ArrayList<>();
 
@@ -103,9 +99,8 @@ public void updateStudent(PublishDTO student) {
     }
 
     return students;
->>>>>>> Stashed changes
-}
-
+   }
+   
 public List<Student> getUnpaidStudents() {
     List<Student> unpaidStudents = new ArrayList<>();
 
