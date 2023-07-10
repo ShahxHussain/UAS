@@ -3,20 +3,22 @@ package UI.ui.compnents;
 import dal.Student;
 import java.util.List;
 import javax.swing.table.DefaultTableModel;
+import model.IConnection;
 
 
-public class admissionConfirmation extends javax.swing.JFrame {
+public class NotifyStudentss extends javax.swing.JFrame {
 
     private DALManager dalManager;
     private final int admissionID = 0;
     private final String std_name = null;
     private final boolean feeStatus = false;
 
-    public admissionConfirmation() {
+    public NotifyStudentss() {
 //        this.admissionID=admissionID;
 //        this.std_name=std_name;
 //        this.feeStatus=feeStatus;
         initComponents();
+        IConnection connectionProvider = null;
         dalManager = new DALManager(connectionProvider);
         
     }
@@ -234,14 +236,18 @@ public class admissionConfirmation extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(admissionConfirmation.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(NotifyStudentss.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(admissionConfirmation.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(NotifyStudentss.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(admissionConfirmation.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(NotifyStudentss.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(admissionConfirmation.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(NotifyStudentss.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
@@ -250,7 +256,7 @@ public class admissionConfirmation extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new admissionConfirmation().setVisible(true);
+                new NotifyStudentss().setVisible(true);
             }
         });
     }
