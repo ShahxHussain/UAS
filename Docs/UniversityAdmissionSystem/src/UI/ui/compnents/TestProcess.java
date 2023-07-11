@@ -6,7 +6,7 @@ package UI.ui.compnents;
 
 import UI.dashboard.components.StdDashboard;
 import common.testDTO;
-import controller.UASController;
+import controller.TestController;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
@@ -20,13 +20,13 @@ public class TestProcess extends javax.swing.JFrame {
      * Creates new form TestProcess
      */
     ArrayList<testDTO> questionList;
-    
-    UASController objController;
+    private TestController testController;
     
     int questionIndex = 0;
+            
     public TestProcess() {
         initComponents();
-        objController = new UASController();
+        this.testController = new TestController();
         questionList = new ArrayList<>();
         loadTestData();
     }
@@ -184,6 +184,13 @@ public class TestProcess extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
+        testDTO currentQuestion = questionList.get(questionIndex);
+
+    // Get the selected answer from the radio buttons
+    String selectedAnswer = getSelectedAnswer(currentQuestion);
+
+    // Update the selected answer in the current question
+    currentQuestion.setSelectedAnswer(selectedAnswer);
         nextQuestion();
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -244,33 +251,57 @@ public static void main(String args[]) {
 
    private void loadTestData() {
         // Retrieve test questions from the database randomly
-        questionList = objController.getTest();
+        questionList = testController.getTest(); // Retrieve test questions from the database
 
-        // Check if there are questions available
-        if (!questionList.isEmpty()) {
-            // Get the first question from the list
-            testDTO currentQuestion = questionList.get(questionIndex);
+    // Check if there are questions available
+    if (!questionList.isEmpty()) {
+        showQuestion(questionList.get(0)); // Display the first question
+    } else {
+        // If no questions are available, display a message to the user
+        JOptionPane.showMessageDialog(this, "No questions available.");
+    }
+//        questionList = objController.getTest();
+//
+//        // Check if there are questions available
+//        if (!questionList.isEmpty()) {
+//            // Get the first question from the list
+//            testDTO currentQuestion = questionList.get(questionIndex);
+//
+//            // Display the question in the GUI
+//            jTextArea1.setText(currentQuestion.getDescription());
+//
+//            // Display the options in the radio buttons
+//            jRadioButton1.setText(currentQuestion.getOption1());
+//            jRadioButton2.setText(currentQuestion.getOption2());
+//            jRadioButton3.setText(currentQuestion.getOption3());
+//            jRadioButton4.setText(currentQuestion.getOption4());
+//
+//            // Display the test time in the GUI
+////            jLabel1.setText(currentQuestion.getTestTime());
+//        } else {
+//            // If no questions are available, display a message to the user
+//            JOptionPane.showMessageDialog(this, "No questions available.");
+//        }
+    }
 
-            // Display the question in the GUI
-            jTextArea1.setText(currentQuestion.getDescription());
+ private void showQuestion(testDTO question) {
+        jTextArea1.setText(question.getDescription());
+        jRadioButton1.setText(question.getOption1());
+        jRadioButton2.setText(question.getOption2());
+        jRadioButton3.setText(question.getOption3());
+        jRadioButton4.setText(question.getOption4());
 
-            // Display the options in the radio buttons
-            jRadioButton1.setText(currentQuestion.getOption1());
-            jRadioButton2.setText(currentQuestion.getOption2());
-            jRadioButton3.setText(currentQuestion.getOption3());
-            jRadioButton4.setText(currentQuestion.getOption4());
-
-            // Display the test time in the GUI
-//            jLabel1.setText(currentQuestion.getTestTime());
-        } else {
-            // If no questions are available, display a message to the user
-            JOptionPane.showMessageDialog(this, "No questions available.");
-        }
+        // Check the selected answer
+        
+        jRadioButton1.setSelected(false);
+            jRadioButton2.setSelected(false);
+            jRadioButton3.setSelected(false);
+            jRadioButton4.setSelected(false);
     }
 
 
     
-    private void nextQuestion() {
+   private void nextQuestion() {
     // Check if there are more questions in the test
     if (questionIndex < questionList.size() - 1) {
         questionIndex++; // Move to the next question
@@ -295,6 +326,7 @@ public static void main(String args[]) {
         endTest();
     }
 }
+
 private void showResultMessage(int correctAnswers, int totalQuestions) {
     int incorrectAnswers = totalQuestions - correctAnswers;
     double score = (double) correctAnswers / totalQuestions * 100;
@@ -324,15 +356,7 @@ private void showResultMessage(int correctAnswers, int totalQuestions) {
 }
     
 private int calculateCorrectAnswers() {
-    int correctAnswers = 0;
-    // Loop through the questionList and check if the selected answer is correct
-    for (testDTO question : questionList) {
-        String selectedAnswer = getSelectedAnswer(question); // Get the selected answer for this question
-        if (selectedAnswer != null && selectedAnswer.equals(question.getAnswer())) {
-            correctAnswers++;
-        }
-    }
-    return correctAnswers;
+    return testController.calculateCorrectAnswers();
 }
    private String getSelectedAnswer(testDTO question) {
      if (jRadioButton1.isSelected() && jRadioButton1.getText().equals(question.getOption1())) {

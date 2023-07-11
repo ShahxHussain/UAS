@@ -34,7 +34,7 @@ public void handleSubmitAction() {
         JOptionPane.showMessageDialog(null, "Please enter a valid message.");
     } else {
         try {
-            dalManager.saveAnnouncement(text);
+//            dalManager.saveAnnouncement(text);
             JOptionPane.showMessageDialog(null, "The message has been stored in the database.");
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "An error occurred while storing the message in the database.");

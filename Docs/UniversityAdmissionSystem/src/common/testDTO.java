@@ -10,6 +10,20 @@ public class testDTO {
     private String option3;
     private String option4;
     private String answer;
+    private String selectedAnswer;
+
+    public testDTO(String description, String[] options, String answer) {
+    if (options == null || options.length != 4) {
+        throw new IllegalArgumentException("Must provide exactly 4 options.");
+    }
+
+    this.description = description;
+    this.option1 = options[0];
+    this.option2 = options[1];
+    this.option3 = options[2];
+    this.option4 = options[3];
+    this.answer = answer;
+}
 
     public String getId() {
         return id;
@@ -69,6 +83,18 @@ public class testDTO {
 
     public String getTestTime() {
         throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    public String getSelectedAnswer() {
+        return selectedAnswer;
+    }
+
+    public void setSelectedAnswer(String selectedAnswer) {
+        this.selectedAnswer = selectedAnswer;
+    }
+
+    public boolean isCorrectAnswer(String selectedAnswer) {
+        return this.answer.equals(selectedAnswer);
     }
     
 

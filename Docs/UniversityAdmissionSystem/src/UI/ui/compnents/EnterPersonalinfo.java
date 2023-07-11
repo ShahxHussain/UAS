@@ -12,14 +12,14 @@ import controller.StudentRegistrationController;
 import model.IConnection;
 public class EnterPersonalinfo extends javax.swing.JFrame {
 
-    private final DALManager dalManager;
+//    private final DALManager dalManager;
     private IConnection connectionProvider;
 
     /**
      * Creates new form EnterPersonalinfo
      */
     public EnterPersonalinfo() {
-        dalManager = new DALManager(connectionProvider);
+//        dalManager = new DALManager(connectionProvider);
         initComponents();
     }
 

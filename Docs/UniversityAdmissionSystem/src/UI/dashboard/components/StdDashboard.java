@@ -6,6 +6,7 @@ package UI.dashboard.components;
 
 import UI.ui.compnents.Checkmeritlist;
 import UI.ui.compnents.Applyforadmission;
+import UI.ui.compnents.GenerateChallan;
 import UI.ui.compnents.TakeTest;
 
 /**
@@ -85,6 +86,11 @@ public class StdDashboard extends javax.swing.JFrame {
         });
 
         jButton6.setText("Print Chalan");
+        jButton6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton6ActionPerformed(evt);
+            }
+        });
 
         jButton10.setText("Make Payment");
 
@@ -222,6 +228,13 @@ public class StdDashboard extends javax.swing.JFrame {
         test.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jButton9ActionPerformed
+
+    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+        // TODO add your handling code here:
+        GenerateChallan challan = new GenerateChallan();
+        challan.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jButton6ActionPerformed
 
     /**
      * @param args the command line arguments

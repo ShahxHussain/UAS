@@ -6,7 +6,7 @@ package UI.dashboard.components;
 
 import UI.ui.compnents.Publishmeritlist;
 import UI.ui.compnents.NotifyStudentss;
-import UI.ui.compnents.notifyStudent;
+//import UI.ui.compnents.notifyStudent;
 
 /**
  *
@@ -191,8 +191,8 @@ public class Admindashboard extends javax.swing.JFrame {
 
     private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
         // TODO add your handling code here:
-        notifyStudent ns = new notifyStudent();
-        ns.setVisible(true);
+//        notifyStudent ns = new notifyStudent();
+//        ns.setVisible(true);
     }//GEN-LAST:event_jButton9ActionPerformed
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
