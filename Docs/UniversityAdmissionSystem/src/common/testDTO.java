@@ -81,10 +81,6 @@ public class testDTO {
         this.answer = answer;
     }
 
-    public String getTestTime() {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
-
     public String getSelectedAnswer() {
         return selectedAnswer;
     }

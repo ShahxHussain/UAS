@@ -14,21 +14,23 @@ import javax.swing.JOptionPane;
  *
  * @author Abdul aziz
  */
-public class TestProcess extends javax.swing.JFrame {
+public class TestProcess extends javax.swing.JFrame implements TestController.TimerCallback {
 
     /**
      * Creates new form TestProcess
      */
     ArrayList<testDTO> questionList;
     private TestController testController;
-    
+    private testDTO currentQuestion;
     int questionIndex = 0;
+    private int timeRemaining;
             
     public TestProcess() {
         initComponents();
-        this.testController = new TestController();
-        questionList = new ArrayList<>();
-        loadTestData();
+        this.testController = new TestController(this);
+        currentQuestion = testController.getCurrentQuestion();
+        showQuestion(currentQuestion);
+        testController.startTimer();
     }
 
     /**
@@ -51,8 +53,10 @@ public class TestProcess extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setBackground(new java.awt.Color(0, 128, 128));
 
         jPanel1.setBackground(new java.awt.Color(0, 128, 128));
 
@@ -75,6 +79,11 @@ public class TestProcess extends javax.swing.JFrame {
         jRadioButton3.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
 
         jRadioButton4.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
+        jRadioButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRadioButton4ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -96,17 +105,17 @@ public class TestProcess extends javax.swing.JFrame {
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(17, 17, 17)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jRadioButton1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(12, 12, 12)
                 .addComponent(jRadioButton2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jRadioButton3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jRadioButton4)
-                .addContainerGap(20, Short.MAX_VALUE))
+                .addContainerGap(29, Short.MAX_VALUE))
         );
 
         jButton1.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
@@ -119,11 +128,14 @@ public class TestProcess extends javax.swing.JFrame {
             }
         });
 
-        jLabel1.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
-        jLabel1.setText("Test Time Goes Here");
+        jLabel1.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        jLabel1.setForeground(java.awt.Color.green);
 
         jLabel2.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
         jLabel2.setText("TEST PROCESS");
+
+        jLabel4.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        jLabel4.setForeground(java.awt.Color.red);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -131,35 +143,38 @@ public class TestProcess extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
+                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(166, 166, 166)
+                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addGap(141, 141, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addContainerGap())
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addGap(0, 187, Short.MAX_VALUE)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(20, 20, 20))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addContainerGap())
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(147, 147, 147))))))
+                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(54, 54, 54)
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(15, 15, 15))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 248, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(22, 22, 22))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(20, 20, 20)
                 .addComponent(jLabel2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(30, 30, 30)
-                .addComponent(jButton1)
-                .addContainerGap(18, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(27, 27, 27)
+                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(21, 21, 21)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jButton1)
+                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(21, 21, 21))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -173,10 +188,10 @@ public class TestProcess extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(105, 105, 105)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(56, Short.MAX_VALUE)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(88, Short.MAX_VALUE))
+                .addGap(50, 50, 50))
         );
 
         pack();
@@ -184,19 +199,18 @@ public class TestProcess extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        testDTO currentQuestion = questionList.get(questionIndex);
-
-    // Get the selected answer from the radio buttons
-    String selectedAnswer = getSelectedAnswer(currentQuestion);
-
-    // Update the selected answer in the current question
-    currentQuestion.setSelectedAnswer(selectedAnswer);
+        String selectedAnswer = getSelectedAnswer();
+        testController.updateSelectedAnswer(currentQuestion, selectedAnswer);
         nextQuestion();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jRadioButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton2ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jRadioButton2ActionPerformed
+
+    private void jRadioButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton4ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jRadioButton4ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -226,12 +240,30 @@ public static void main(String args[]) {
     //</editor-fold>
 
     /* Create and display the form */
-    java.awt.EventQueue.invokeLater(new Runnable() {
-        public void run() {
-            controller.UASController objController = new controller.UASController(); // Create an instance of UASController
-            new TestProcess().setVisible(true); // Pass objController to the constructor
+    try {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
+            }
+        } catch (ClassNotFoundException ex) {
+            java.util.logging.Logger.getLogger(TestProcess.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            java.util.logging.Logger.getLogger(TestProcess.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(TestProcess.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(TestProcess.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-    });
+        //</editor-fold>
+
+        /* Create and display the form */
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new TestProcess().setVisible(true);
+            }
+        });
 }
 
 
@@ -239,6 +271,7 @@ public static void main(String args[]) {
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JRadioButton jRadioButton1;
@@ -248,7 +281,7 @@ public static void main(String args[]) {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextArea jTextArea1;
     // End of variables declaration//GEN-END:variables
-
+private javax.swing.Timer timer;
    private void loadTestData() {
         // Retrieve test questions from the database randomly
         questionList = testController.getTest(); // Retrieve test questions from the database
@@ -260,28 +293,7 @@ public static void main(String args[]) {
         // If no questions are available, display a message to the user
         JOptionPane.showMessageDialog(this, "No questions available.");
     }
-//        questionList = objController.getTest();
-//
-//        // Check if there are questions available
-//        if (!questionList.isEmpty()) {
-//            // Get the first question from the list
-//            testDTO currentQuestion = questionList.get(questionIndex);
-//
-//            // Display the question in the GUI
-//            jTextArea1.setText(currentQuestion.getDescription());
-//
-//            // Display the options in the radio buttons
-//            jRadioButton1.setText(currentQuestion.getOption1());
-//            jRadioButton2.setText(currentQuestion.getOption2());
-//            jRadioButton3.setText(currentQuestion.getOption3());
-//            jRadioButton4.setText(currentQuestion.getOption4());
-//
-//            // Display the test time in the GUI
-////            jLabel1.setText(currentQuestion.getTestTime());
-//        } else {
-//            // If no questions are available, display a message to the user
-//            JOptionPane.showMessageDialog(this, "No questions available.");
-//        }
+//        
     }
 
  private void showQuestion(testDTO question) {
@@ -291,41 +303,26 @@ public static void main(String args[]) {
         jRadioButton3.setText(question.getOption3());
         jRadioButton4.setText(question.getOption4());
 
-        // Check the selected answer
+        clearRadioButtonSelection();
         
-        jRadioButton1.setSelected(false);
-            jRadioButton2.setSelected(false);
-            jRadioButton3.setSelected(false);
-            jRadioButton4.setSelected(false);
     }
-
-
     
-   private void nextQuestion() {
-    // Check if there are more questions in the test
-    if (questionIndex < questionList.size() - 1) {
-        questionIndex++; // Move to the next question
-
-        // Get the next question from the list
-        testDTO nextQuestion = questionList.get(questionIndex);
-
-        // Display the next question and options in the GUI components
-        jTextArea1.setText(nextQuestion.getDescription());
-        jRadioButton1.setText(nextQuestion.getOption1());
-        jRadioButton2.setText(nextQuestion.getOption2());
-        jRadioButton3.setText(nextQuestion.getOption3());
-        jRadioButton4.setText(nextQuestion.getOption4());
-
-        // Clear the selection of radio buttons for the next question
+    private void clearRadioButtonSelection() {
         jRadioButton1.setSelected(false);
         jRadioButton2.setSelected(false);
         jRadioButton3.setSelected(false);
         jRadioButton4.setSelected(false);
-    } else {
-        // If there are no more questions, end the test
-        endTest();
     }
-}
+
+    
+  private void nextQuestion() {
+        if (testController.moveToNextQuestion()) {
+            currentQuestion = testController.getCurrentQuestion();
+            showQuestion(currentQuestion);
+        } else {
+            endTest();
+        }
+    }
 
 private void showResultMessage(int correctAnswers, int totalQuestions) {
     int incorrectAnswers = totalQuestions - correctAnswers;
@@ -337,41 +334,54 @@ private void showResultMessage(int correctAnswers, int totalQuestions) {
             + "Incorrect Answers: " + incorrectAnswers + "\n"
             + "Score: " + score + "%";
 
-    JOptionPane.showMessageDialog(this, resultMessage);
+    JOptionPane.showMessageDialog(null, resultMessage); // Change the argument to null
 }
+
     private void endTest() {
     // Calculate the number of correct answers
-    int correctAnswers = calculateCorrectAnswers();
-    int totalQuestions = questionList.size();
+        int correctAnswers = testController.calculateCorrectAnswers();
+        int totalQuestions = testController.getTotalQuestions();
 
-    // Display the test result
-    showResultMessage(correctAnswers, totalQuestions);
+        showResultMessage(correctAnswers, totalQuestions);
 
-    // Close the test window
-    dispose();
+        dispose();
 
-    // Redirect to the dashboard
-    StdDashboard dashboard = new StdDashboard();
-    dashboard.setVisible(true);
+        StdDashboard dashboard = new StdDashboard();
+        dashboard.setVisible(true);
 }
     
 private int calculateCorrectAnswers() {
     return testController.calculateCorrectAnswers();
 }
-   private String getSelectedAnswer(testDTO question) {
-     if (jRadioButton1.isSelected() && jRadioButton1.getText().equals(question.getOption1())) {
-        return jRadioButton1.getText();
-    } else if (jRadioButton2.isSelected() && jRadioButton2.getText().equals(question.getOption2())) {
-        return jRadioButton2.getText();
-    } else if (jRadioButton3.isSelected() && jRadioButton3.getText().equals(question.getOption3())) {
-        return jRadioButton3.getText();
-    } else if (jRadioButton4.isSelected() && jRadioButton4.getText().equals(question.getOption4())) {
-        return jRadioButton4.getText();
-    }
+   private String getSelectedAnswer() {
+    if (jRadioButton1.isSelected()) {
+            return jRadioButton1.getText();
+        } else if (jRadioButton2.isSelected()) {
+            return jRadioButton2.getText();
+        } else if (jRadioButton3.isSelected()) {
+            return jRadioButton3.getText();
+        } else if (jRadioButton4.isSelected()) {
+            return jRadioButton4.getText();
+        }
 
-    // If no option is selected, return null or an appropriate default value.
-    return null;
+        return null;
 }
    
+    @Override
+  public void onTimerTick(int timeRemaining) {
+    // Update the timer label on the GUI with the remaining time
+    jLabel1.setText("Time Remaining: " + timeRemaining + " seconds");
+
+    if (timeRemaining <= 0) {
+        // Move to the next question when the time runs out
+        nextQuestion();
+    } else if (timeRemaining <= 10) {
+        // Display the "Hurry Up! Time is running out" message
+        jLabel4.setText("Hurry Up! Time is running out");
+    } else {
+        // Hide the "Hurry Up! Time is running out" message
+        jLabel4.setText("");
+    }
+}
 }
 
