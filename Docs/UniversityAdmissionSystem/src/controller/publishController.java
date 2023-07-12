@@ -2,12 +2,13 @@ package controller;
 
 import common.PublishDTO;
 import dal.DALManager;
-import model.publishFactory;
+//import model.publishFactory;
 import UI.ui.compnents.Publishmeritlist;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.util.List;
+import model.publishFactory;
 
 public class publishController {
     private Publishmeritlist ui;
@@ -23,14 +24,14 @@ public class publishController {
     }
 
  private void attachEventListeners() {
-    ui.getJButton6().addActionListener(e -> onViewButtonClicked());
+    ui.getJButton6().addActionListener(e -> viewList());
     ui.getJButton3().addActionListener(e -> onPublishButtonClicked());
     ui.getJButton8().addActionListener(e -> onModifyButtonClicked());
     ui.getJButton1().addActionListener(e -> onDeleteButtonClicked());
 }
 
 
-    public void onViewButtonClicked() {
+    public void viewList() {
         List<PublishDTO> students = dalManager.getAllStudents();
         DefaultTableModel model = (DefaultTableModel) ui.getJTable4().getModel();
         model.setRowCount(0);
@@ -47,20 +48,22 @@ public class publishController {
     }
 
 public void onPublishButtonClicked() {
-    int selectedRow = ui.getJTable4().getSelectedRow();
+    int[] selectedRows = ui.getJTable4().getSelectedRows();
 
-    if (selectedRow >= 0) {
-        PublishDTO student = ui.getStudentData(selectedRow);
-
-        dalManager.updateStudent(student);
-//        JOptionPane.showMessageDialog(ui, "Student data published successfully", "Success", JOptionPane.INFORMATION_MESSAGE);
+    if (selectedRows.length > 0) {
+        for (int row : selectedRows) {
+            PublishDTO student = ui.getStudentData(row);
+            dalManager.updateStudent(student);
+        }
 
         isDataPublished = true; // Update the flag to indicate data has been published
+//        JOptionPane.showMessageDialog(ui, "Student data published successfully", "Success", JOptionPane.INFORMATION_MESSAGE);
     } 
 //    else {
-//        JOptionPane.showMessageDialog(ui, "Please select a row to publish", "Error", JOptionPane.ERROR_MESSAGE);
+//        JOptionPane.showMessageDialog(ui, "Please select at least one row to publish", "Error", JOptionPane.ERROR_MESSAGE);
 //    }
 }
+
 
 
     public void onModifyButtonClicked() {

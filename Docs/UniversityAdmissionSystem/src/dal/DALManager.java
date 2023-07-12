@@ -16,12 +16,12 @@ public class DALManager {
     public DALManager(IConnection connectionProvider) {
         this.connectionProvider = connectionProvider;
     }
-
+//************************start of hamza's code*********************/////
     public List<PublishDTO> getAllStudents() {
         List<PublishDTO> students = new ArrayList<>();
 
         try (Connection connection = connectionProvider.getConnection();
-             PreparedStatement statement = connection.prepareStatement("SELECT * FROM Testresult");
+             PreparedStatement statement = connection.prepareStatement("  select *   FROM [universityadmissionsystem].[dbo].[Testresult] order by percentage desc");
              ResultSet resultSet = statement.executeQuery()) {
 
             while (resultSet.next()) {
@@ -70,7 +70,7 @@ public void updateStudent(PublishDTO student) {
         // Handle the exception or throw it to the calling code
     }
 }
-
+//hamza badar code end******************************************************************************///////
 
     
    public List<Student> getStudents() {

@@ -16,45 +16,47 @@ import javax.swing.table.DefaultTableModel;
  */
 public class Publishmeritlist extends javax.swing.JFrame {
 
-private publishController controller;
-private Publishmeritlist ui; // Define the ui variable
+    private publishController controller;
+    private Publishmeritlist ui; // Define the ui variable
 
-public Publishmeritlist() {
-    initComponents();
-    ui = this; // Assign the current instance to the ui variable
-    controller = new publishController(ui);
-}
-public PublishDTO getStudentData(int selectedRow) {
-    PublishDTO student = new PublishDTO();
+    public Publishmeritlist() {
+        initComponents();
+        ui = this; // Assign the current instance to the ui variable
+        controller = new publishController(ui);
+    }
 
-    // Get the data from the UI components and set it in the student object
-    student.setStudentID((int) jTable4.getValueAt(selectedRow, 0));
-    student.setStudentName((String) jTable4.getValueAt(selectedRow, 1));
-    student.setTestResult((int) jTable4.getValueAt(selectedRow, 2));
-    student.setPercentage((double) jTable4.getValueAt(selectedRow, 3));
+    public PublishDTO getStudentData(int selectedRow) {
+        PublishDTO student = new PublishDTO();
 
-    return student;
-}
+        // Get the data from the UI components and set it in the student object
+        student.setStudentID((int) jTable4.getValueAt(selectedRow, 0));
+        student.setStudentName((String) jTable4.getValueAt(selectedRow, 1));
+        student.setTestResult((int) jTable4.getValueAt(selectedRow, 2));
+        student.setPercentage((double) jTable4.getValueAt(selectedRow, 3));
 
+        return student;
+    }
 
+    public JButton getJButton6() {
+        return jButton6;
+    }
 
+    public JButton getJButton3() {
+        return jButton3;
+    }
 
-public JButton getJButton6() {
-    return jButton6;
-}
+    public JButton getJButton8() {
+        return jButton8;
+    }
 
-public JButton getJButton3() {
-    return jButton3;
-}
-public JButton getJButton8() {
-    return jButton8;
-}
-public JButton getJButton1() {
-    return jButton1;
-}
-public JTable getJTable4() {
-    return jTable4;
-}
+    public JButton getJButton1() {
+        return jButton1;
+    }
+
+    public JTable getJTable4() {
+        return jTable4;
+    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -306,38 +308,39 @@ public JTable getJTable4() {
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
         // TODO add your handling code here:
-    publishController controller = new publishController(ui);
-    controller.onViewButtonClicked();
+        publishController controller = new publishController(ui);
+        controller.viewList();
     }//GEN-LAST:event_jButton6ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-         publishController controller = new publishController(ui);
+        publishController controller = new publishController(ui);
         controller.onDeleteButtonClicked();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-   // TODO add your handling code here:
+        // TODO add your handling code here:
 // TODO add your handling code here:
 // jTable1.setModel(new DefaultTableModel());
 
 // Display the welcome message in a dialog box
-String message = "Welcome to the Dashboard!";
-Font font = new Font("Arial", Font.BOLD, 35); // Adjust the font properties as desired
+        String message = "Welcome to the Dashboard!";
+        Font font = new Font("Arial", Font.BOLD, 35); // Adjust the font properties as desired
 
-JLabel label = new JLabel(message);
-label.setFont(font);
+        JLabel label = new JLabel(message);
+        label.setFont(font);
 
-JOptionPane.showMessageDialog(this, label, "Dashboard", JOptionPane.PLAIN_MESSAGE);
+        JOptionPane.showMessageDialog(this, label, "Dashboard", JOptionPane.PLAIN_MESSAGE);
 
 // Clear the background of the JTable
-jTable4.setBackground(null);
+        jTable4.setBackground(null);
 
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
         controller.onPublishButtonClicked();
+        
     }//GEN-LAST:event_jButton3ActionPerformed
 
     /**
@@ -398,6 +401,4 @@ jTable4.setBackground(null);
     private javax.swing.JTable jTable4;
     // End of variables declaration//GEN-END:variables
 
-   
-   
 }
