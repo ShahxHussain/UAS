@@ -5,9 +5,14 @@
 package UI.dashboard.components;
 
 import UI.ui.compnents.Publishmeritlist;
+<<<<<<< HEAD
 import UI.ui.compnents.confirmAdmission;
 import UI.ui.compnents.notifyStudent;
 
+=======
+import UI.ui.compnents.NotifyStudentss;
+//import UI.ui.compnents.notifyStudent;
+>>>>>>> main
 
 /**
  *
@@ -61,6 +66,11 @@ public class Admindashboard extends javax.swing.JFrame {
         jButton6.setText("Scheduling Test");
 
         jButton7.setText("Admission Announcement");
+        jButton7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton7ActionPerformed(evt);
+            }
+        });
 
         jButton8.setText("Admission Confirmation");
         jButton8.addActionListener(new java.awt.event.ActionListener() {
@@ -179,17 +189,35 @@ public class Admindashboard extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton12ActionPerformed
 
     private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
+<<<<<<< HEAD
         // TODO add your handling code here:
         confirmAdmission ca=new confirmAdmission();
         ca.setVisible(true);
+=======
+            
+        NotifyStudentss ca = new NotifyStudentss();
+        ca.setVisible(true);
+        this.dispose();        
+>>>>>>> main
     }//GEN-LAST:event_jButton8ActionPerformed
 
     private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
         // TODO add your handling code here:
+<<<<<<< HEAD
         notifyStudent ns= new notifyStudent();
         ns.setVisible(true);
     }//GEN-LAST:event_jButton9ActionPerformed
 
+=======
+//        notifyStudent ns = new notifyStudent();
+//        ns.setVisible(true);
+    }//GEN-LAST:event_jButton9ActionPerformed
+
+    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton7ActionPerformed
+
+>>>>>>> main
     /**
      * @param args the command line arguments
      */

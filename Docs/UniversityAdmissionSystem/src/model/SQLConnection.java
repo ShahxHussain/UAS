@@ -1,40 +1,30 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package model;
 
+import common.StudentDTO;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
+import java.sql.*;
+import java.util.ArrayList;
 
-public class SQLConnection {
-    public static final String URL = "jdbc:sqlserver://localhost:1433;databaseName=universityadmissionsystem;trustServerCertificate=true;";
-    public static final String USERNAME = "sa";
-    public static final String PASSWORD = "123456";
+public class SQLConnection implements IConnection {
+    public String URL;
+    public String USERNAME;
+    public String PASSWORD;
 
-    public static void main(String[] args) {
-        Connection connection = null;
+    
+    public SQLConnection(String URL, String USERNAME, String PASSWORD) {
+        this.URL = URL;
+        this.USERNAME = USERNAME;
+        this.PASSWORD = PASSWORD;
+    }
+
+    @Override
+    public Connection getConnection() {
         try {
-          
             Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
-            connection = DriverManager.getConnection(URL, USERNAME, PASSWORD);
-            System.out.println("aaaa " + connection);
-            connection.close();
-        } catch (ClassNotFoundException e) {
+            return DriverManager.getConnection(URL, USERNAME, PASSWORD);
+        } catch (ClassNotFoundException | SQLException e) {
             e.printStackTrace();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        } finally {
-            if (connection != null) {
-                try {
-                    connection.close();
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
-            }
         }
+        return null;
     }
 }
-
