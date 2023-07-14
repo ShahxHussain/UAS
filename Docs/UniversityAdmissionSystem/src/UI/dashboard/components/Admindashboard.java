@@ -5,6 +5,9 @@
 package UI.dashboard.components;
 
 import UI.ui.compnents.Publishmeritlist;
+import UI.ui.compnents.confirmAdmission;
+import UI.ui.compnents.notifyStudent;
+
 
 /**
  *
@@ -67,6 +70,11 @@ public class Admindashboard extends javax.swing.JFrame {
         });
 
         jButton9.setText("Notify");
+        jButton9.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton9ActionPerformed(evt);
+            }
+        });
 
         jButton12.setText("Publish Merit List");
         jButton12.addActionListener(new java.awt.event.ActionListener() {
@@ -172,8 +180,15 @@ public class Admindashboard extends javax.swing.JFrame {
 
     private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
         // TODO add your handling code here:
-        
+        confirmAdmission ca=new confirmAdmission();
+        ca.setVisible(true);
     }//GEN-LAST:event_jButton8ActionPerformed
+
+    private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
+        // TODO add your handling code here:
+        notifyStudent ns= new notifyStudent();
+        ns.setVisible(true);
+    }//GEN-LAST:event_jButton9ActionPerformed
 
     /**
      * @param args the command line arguments

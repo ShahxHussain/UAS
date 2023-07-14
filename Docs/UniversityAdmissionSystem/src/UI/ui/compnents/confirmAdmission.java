@@ -4,16 +4,18 @@
  */
 package UI.ui.compnents;
 
+import UI.dashboard.components.Admindashboard;
+
 /**
  *
  * @author DELL
  */
-public class confrimAdmission extends javax.swing.JFrame {
+public class confirmAdmission extends javax.swing.JFrame {
 
     /**
      * Creates new form confrimAdmission
      */
-    public confrimAdmission() {
+    public confirmAdmission() {
         initComponents();
     }
 
@@ -187,6 +189,8 @@ public class confrimAdmission extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
+        Admindashboard admin=new Admindashboard();
+        admin.setVisible(true);
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jCheckBox2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox2ActionPerformed
@@ -210,20 +214,21 @@ public class confrimAdmission extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(confrimAdmission.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(confirmAdmission.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(confrimAdmission.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(confirmAdmission.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(confrimAdmission.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(confirmAdmission.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(confrimAdmission.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(confirmAdmission.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new confrimAdmission().setVisible(true);
+                new confirmAdmission().setVisible(true);
             }
         });
     }

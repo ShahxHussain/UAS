@@ -4,6 +4,8 @@
  */
 package UI.ui.compnents;
 
+import UI.dashboard.components.Admindashboard;
+
 /**
  *
  * @author DELL
@@ -190,6 +192,8 @@ public class notifyStudent extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
+        Admindashboard admin=new Admindashboard();
+        admin.setVisible(true);
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
