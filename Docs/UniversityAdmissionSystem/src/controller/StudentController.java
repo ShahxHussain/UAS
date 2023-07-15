@@ -1,31 +1,16 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
-package controller;
 
-/**
- *
- * @author DELL
- */
+package controller;
 
 import dal.Student;
 import dal.DALManager;
 import java.util.List;
-import model.StudentModel;
 
-public class confrimAdmissionController {
+public class StudentController {
     private DALManager dalManager;
-    private final StudentModel model;
 
-    
-
-    public confrimAdmissionController(DALManager dalManager, StudentModel model) {
+    public StudentController(DALManager dalManager) {
         this.dalManager = dalManager;
-        this.model = model;
     }
-
-
 
     public List<Student> getStudents() {
         return dalManager.getStudents();
