@@ -10,6 +10,7 @@ package model;
  */
 
 public class StudentModel {
+    
     private int admissionID;
     private boolean feeStatus;
     private String std_name;
