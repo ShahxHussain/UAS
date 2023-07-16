@@ -18,8 +18,10 @@ import model.SQLConnection;
 
 public class DALManager {
     private IConnection sql;
-
-  
+    public DALManager() {
+        this.sql = new SQLConnection("jdbc:sqlserver://localhost:1433;databaseName=universityadmissionsystem;trustServerCertificate=true;", "sa", "123456");
+    }
+    
     public List<Student> getStudents() {
         List<Student> students = new ArrayList<>();
         
@@ -117,21 +119,17 @@ public class DALManager {
             // Retrieve the question details from the result set
             String id = resultSet.getString("testid");
             String description = resultSet.getString("test_Description");
-            String option1 = resultSet.getString("Option_1");
-            String option2 = resultSet.getString("Option_2");
-            String option3 = resultSet.getString("Option_3");
-            String option4 = resultSet.getString("Option_4");
+            String[] options = {
+                resultSet.getString("Option_1"),
+                resultSet.getString("Option_2"),
+                resultSet.getString("Option_3"),
+                resultSet.getString("Option_4")
+            };
             String answer = resultSet.getString("answer");
 
             // Create a new testDTO object and set its properties
-            testDTO question = new testDTO();
+            testDTO question = new testDTO(description, options, answer);
             question.setId(id);
-            question.setDescription(description);
-            question.setOption1(option1);
-            question.setOption2(option2);
-            question.setOption3(option3);
-            question.setOption4(option4);
-            question.setAnswer(answer);
 
             // Add the question to the list
             testQuestions.add(question);
@@ -142,6 +140,7 @@ public class DALManager {
 
     return testQuestions;
 }
+
 
    public void saveAnnouncement(String text) {
     try (Connection connection = sql.getConnection()) {
