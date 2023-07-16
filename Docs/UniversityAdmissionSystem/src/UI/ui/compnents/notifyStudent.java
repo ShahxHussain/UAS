@@ -16,10 +16,10 @@ import model.IConnection;
 
 
 public class notifyStudent extends javax.swing.JFrame {
+ 
+    
     private notifyStudentController controller;
 
-    
-    
    public notifyStudent() {
         initComponents();
         IConnection connectionProvider = new SQLConnection("jdbc:sqlserver://localhost:1433;databaseName=universityadmissionsystem;trustServerCertificate=true;", "sa", "123456");
@@ -61,6 +61,8 @@ public class notifyStudent extends javax.swing.JFrame {
         jButton2 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
+        
+
 
         menu1.setLabel("File");
         menuBar1.add(menu1);
@@ -237,7 +239,8 @@ JOptionPane.showMessageDialog(this, message);
         model.addColumn("Student Name");
 
         for (Student student : students) {
-            model.addRow(new Object[]{student.getAdmissionID(), student.getStudentName()});
+            model.addRow(new Object[]{student.getAdmissionID(), student.getStudentName(), false});
+
         }
 
         jTable1.setModel(model);
