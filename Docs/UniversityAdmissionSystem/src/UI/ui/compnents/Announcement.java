@@ -18,7 +18,7 @@ public class Announcement extends javax.swing.JFrame {
 
     public Announcement() {
         AnnouncementModel model = new AnnouncementModel();
-        DALManager dalManager = new DALManager(new SQLConnection("jdbc:sqlserver://localhost:1433;databaseName=universityadmissionsystem;trustServerCertificate=true;", "sa", "123456"));
+        DALManager dalManager = new DALManager();
         controller = new AnnouncementController(model, dalManager);
         initComponents();
     }
