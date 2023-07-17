@@ -15,9 +15,8 @@ public class admissionConfirmation extends javax.swing.JFrame {
     private final boolean feeStatus = false;
 
     public admissionConfirmation() {
-//        this.admissionID=admissionID;
-//        this.std_name=std_name;
-//        this.feeStatus=feeStatus;
+
+        
         initComponents();
         dalManager = new DALManager();
         
