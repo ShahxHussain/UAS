@@ -1,7 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
+
 package UI.ui.compnents;
 
 import controller.notifyStudentController;
@@ -259,7 +256,7 @@ public class notifyStudent extends javax.swing.JFrame {
 
         // Start the timer countdown
         timerRunning = true;
-        timerCount = 10; 
+        timerCount = 12; 
         startTimer();
     } else {
         // Timer is running, show the countdown
