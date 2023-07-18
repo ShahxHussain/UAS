@@ -211,7 +211,6 @@ public class notifyStudent extends javax.swing.JFrame {
         DefaultTableModel model = new DefaultTableModel();
         model.addColumn("AdmissionID");
         model.addColumn("Student Name");
-//        model.addColumn("Notify");
 
         for (Student student : students) {
             model.addRow(new Object[]{student.getAdmissionID(), student.getStudentName()});
