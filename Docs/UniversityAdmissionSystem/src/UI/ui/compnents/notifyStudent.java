@@ -22,7 +22,6 @@ public class notifyStudent extends javax.swing.JFrame {
     
     public notifyStudent() {
         initComponents();
-        initComponents();
         IConnection connectionProvider = new SQLConnection("jdbc:sqlserver://localhost:1433;databaseName=universityadmissionsystem;trustServerCertificate=true;", "sa", "123456");
         DALManager dalManager = new DALManager(connectionProvider);
         StudentModel model = new StudentModel();

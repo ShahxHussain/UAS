@@ -228,12 +228,5 @@ public int getNotifiedStudentsCount() {
     return count;
 }
 
-
-
-
-
-
-
-
 }
 
