@@ -158,5 +158,53 @@ public List<Student> getPaidStudents() {
     }
     return paidStudents;
 }
+
+
+public void addNotifiedStudent(int admissionID, String studentName) {
+    try {
+        Connection connection = connectionProvider.getConnection();
+        
+        String query = "INSERT INTO NotifiedStudents (AdmissionID, StudentName) VALUES (?, ?)";
+        PreparedStatement statement = connection.prepareStatement(query);
+        statement.setInt(1, admissionID);
+        statement.setString(2, studentName);
+        statement.executeUpdate();
+
+        statement.close();
+        connection.close();
+    } catch (Exception e) {
+        e.printStackTrace();
+    }
+}
+
+public int getNotifiedStudentsCount() {
+    int count = 0;
+    try {
+        Connection connection = connectionProvider.getConnection();
+        
+        String query = "SELECT COUNT(*) FROM NotifiedStudents";
+        PreparedStatement statement = connection.prepareStatement(query);
+        ResultSet resultSet = statement.executeQuery();
+
+        if (resultSet.next()) {
+            count = resultSet.getInt(1);
+        }
+
+        resultSet.close();
+        statement.close();
+        connection.close();
+    } catch (Exception e) {
+        e.printStackTrace();
+    }
+    return count;
+}
+
+
+
+
+
+
+
+
 }
 

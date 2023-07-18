@@ -5,7 +5,7 @@
 package UI.dashboard.components;
 
 import UI.ui.compnents.Publishmeritlist;
-import UI.ui.compnents.notifyStudent;
+import Miscellinous.notifyStudent;
 //import UI.ui.compnents.notifyStudent;
 
 /**
