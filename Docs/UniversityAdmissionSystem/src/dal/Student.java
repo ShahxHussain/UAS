@@ -11,7 +11,19 @@ package dal;
 public class Student {
     private int admissionID;
     private String studentName;
+    private String Merit;
+    private String Fee;
+    private String Admission;
     private boolean feeStatus;
+    
+
+    public Student(int admissionID, String studentName, String Merit, String Fee, String Admission) {
+        this.admissionID = admissionID;
+        this.studentName = studentName;
+        this.Merit = Merit;
+        this.Fee = Fee;
+        this.Admission = Admission;
+    }
 
     public Student(int admissionID, String studentName, boolean feeStatus) {
         this.admissionID = admissionID;
@@ -25,6 +37,30 @@ public class Student {
 
     public String getStudentName() {
         return studentName;
+    }
+    
+    public String getMerit() {
+        return Merit;
+    }
+
+    public void setMerit(String Merit) {
+        this.Merit = Merit;
+    }
+
+    public String getFee() {
+        return Fee;
+    }
+
+    public void setFee(String Fee) {
+        this.Fee = Fee;
+    }
+
+    public String getAdmission() {
+        return Admission;
+    }
+
+    public void setAdmission(String Admission) {
+        this.Admission = Admission;
     }
 
     public boolean isFeePaid() {

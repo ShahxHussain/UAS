@@ -25,4 +25,7 @@ public class notifyStudentController {
     public List<Student> getPaidStudents() {
         return dalManager.getPaidStudents();
     }
+     public List<Student> getNotifiedStudents() {
+        return dalManager.getNotifiedStudents();
+    }
 }

@@ -14,10 +14,33 @@ public class StudentModel {
     private int admissionID;
     private boolean feeStatus;
     private String std_name;
+    private String Merit;
+    private String Fee;
+    private String Admission;
 
-    public StudentModel() {
-}
+    public String getMerit() {
+        return Merit;
+    }
 
+    public void setMerit(String Merit) {
+        this.Merit = Merit;
+    }
+
+    public String getFee() {
+        return Fee;
+    }
+
+    public void setFee(String Fee) {
+        this.Fee = Fee;
+    }
+
+    public String getAdmission() {
+        return Admission;
+    }
+
+    public void setAdmission(String Admission) {
+        this.Admission = Admission;
+    }
 
     public int getAdmissionID() {
         return admissionID;

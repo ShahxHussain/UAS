@@ -72,7 +72,36 @@ public void updateStudent(PublishDTO student) {
 }
 //hamza badar code end******************************************************************************///////
 
-    
+public List<Student> getNotifiedStudents() {
+    List<Student> students = new ArrayList<>();
+
+    try {
+        Connection connection = connectionProvider.getConnection();
+        
+        String query = "SELECT * FROM NOTIFIEDSTUDENTS";
+        PreparedStatement statement = connection.prepareStatement(query);
+        ResultSet resultSet = statement.executeQuery();
+
+        while (resultSet.next()) {
+            int admissionID = resultSet.getInt("admissionID");
+            String studentName = resultSet.getString("std_name");
+            String Merit = resultSet.getString("Merit");
+            String Fee = resultSet.getString("Fee");
+            String Admission = resultSet.getString("Admission");
+            Student student = new Student(admissionID, studentName, Merit, Fee, Admission);
+            students.add(student);
+        }
+
+        resultSet.close();
+        statement.close();
+        connection.close();
+    } catch (Exception e) {
+        e.printStackTrace();
+    }
+
+    return students;
+   }    
+
    public List<Student> getStudents() {
     List<Student> students = new ArrayList<>();
 

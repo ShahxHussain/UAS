@@ -9,8 +9,11 @@ import model.SQLConnection;
 import model.StudentModel;
 import dal.DALManager;
 import dal.Student;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.List;
 import javax.swing.JOptionPane;
+import javax.swing.Timer;
 import javax.swing.table.DefaultTableModel;
 import model.IConnection;
 
@@ -165,20 +168,21 @@ public class notifyStudent extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(layout.createSequentialGroup()
-                            .addGap(146, 146, 146)
-                            .addComponent(jLabel1))
-                        .addGroup(layout.createSequentialGroup()
-                            .addGap(18, 18, 18)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 577, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 237, Short.MAX_VALUE)
+                            .addComponent(jLabel1)
+                            .addGap(142, 142, 142))
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                            .addGap(18, 18, Short.MAX_VALUE)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, 120, Short.MAX_VALUE)
+                                .addComponent(jButton5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                     .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, 120, Short.MAX_VALUE)
-                            .addComponent(jButton5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                .addContainerGap(25, Short.MAX_VALUE))
+                        .addGap(18, 18, 18)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 657, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -207,11 +211,12 @@ public class notifyStudent extends javax.swing.JFrame {
         DefaultTableModel model = new DefaultTableModel();
         model.addColumn("AdmissionID");
         model.addColumn("Student Name");
-        model.addColumn("Notify");
+//        model.addColumn("Notify");
 
         for (Student student : students) {
             model.addRow(new Object[]{student.getAdmissionID(), student.getStudentName()});
         }
+        
          jTable1.setModel(model);
 
     }//GEN-LAST:event_jButton1ActionPerformed
@@ -248,27 +253,60 @@ public class notifyStudent extends javax.swing.JFrame {
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         
-       DefaultTableModel tableModel = (DefaultTableModel) jTable1.getModel();
-    int rowCount = tableModel.getRowCount();
-    for (int i = 0; i < rowCount; i++) {
-        boolean notify = (boolean) tableModel.getValueAt(i, 2); // Checkbox column index is 2
-        if (notify) {
-            int admissionID = (int) tableModel.getValueAt(i, 0);
-            String studentName = (String) tableModel.getValueAt(i, 1);
-            
-            // Add the notified student to the new table in the database
-            dalManager.addNotifiedStudent(admissionID, studentName);
-        }
+       if (!timerRunning) {
+        int totalStudents = jTable1.getRowCount();
+        String message = "Total Number of Students (" + totalStudents + ") are Notified";
+        JOptionPane.showMessageDialog(this, message);
+
+        // Start the timer countdown
+        timerRunning = true;
+        timerCount = 10; 
+        startTimer();
+    } else {
+        // Timer is running, show the countdown
+        String message = "Time Remaining: 00:00:" + timerCount + " to Renotify";
+        JOptionPane.showMessageDialog(this, message);
     }
+}
 
-    int totalNotifiedStudents = dalManager.getNotifiedStudentsCount();
-    String message = "Total Number of Students (" + totalNotifiedStudents + ") are Notified";  
-    JOptionPane.showMessageDialog(this, message);
+            private boolean timerRunning = false;
+            private int timerCount;
+            private Timer timer;
 
+            // Method to start the timer countdown
+            private void startTimer() {
+                timer = new Timer(1000, new ActionListener() {
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+                        timerCount--;
+                        if (timerCount <= 0) {
+                            // Timer expired
+                            timer.stop();
+                            timerRunning = false;
+                            JOptionPane.showMessageDialog(notifyStudent.this, "Re-Notify the students now!");
+                        }
+                    }
+                });
+                timer.start();
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
         // TODO add your handling code here:
+        List<Student> students = controller.getNotifiedStudents();
+
+        DefaultTableModel model = new DefaultTableModel();
+        model.addColumn("AdmissionID");
+        model.addColumn("Student Name");
+        model.addColumn("MeritList Announcement");
+        model.addColumn("Fee Submission");
+        model.addColumn("Admission Confirmation");
+
+        for (Student student : students) {
+            model.addRow(new Object[]{student.getAdmissionID(), student.getStudentName()
+            ,student.getMerit(), student.getFee(), student.getAdmission()});
+        }
+         jTable1.setModel(model);
+
     }//GEN-LAST:event_jButton6ActionPerformed
 
     
