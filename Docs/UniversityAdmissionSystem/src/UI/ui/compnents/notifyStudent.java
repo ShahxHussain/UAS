@@ -126,24 +126,9 @@ public class notifyStudent extends javax.swing.JFrame {
 
             },
             new String [] {
-                "AdmissionID", "StudentName", "Status"
-            }
-        ) {
-            Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.String.class, java.lang.Boolean.class
-            };
-            boolean[] canEdit = new boolean [] {
-                true, false, true
-            };
 
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
             }
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
+        ));
         jScrollPane1.setViewportView(jTable1);
 
         jButton4.setBackground(new java.awt.Color(0, 128, 128));
@@ -199,9 +184,8 @@ public class notifyStudent extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-        List<Student> students = controller.getStudents();
 
+        List<Student> students = controller.getStudents();
         DefaultTableModel model = new DefaultTableModel();
         model.addColumn("AdmissionID");
         model.addColumn("Student Name");
