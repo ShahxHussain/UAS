@@ -332,15 +332,13 @@ private void showResultMessage(int correctAnswers, int totalQuestions) {
 
     // Calculate total time for the test and time utilized per question
     int totalTime = totalQuestions * 60; // Assuming 1 minute per question
-    int timeUtilized = totalTime - timeRemaining;
 
     String resultMessage = "Test completed!\n"
             + "Total Questions: " + totalQuestions + "\n"
             + "Correct Answers: " + correctAnswers + "\n"
             + "Incorrect Answers: " + incorrectAnswers + "\n"
             + "Percentage: " + score + "%\n"
-            + "Total Time for the Test: " + totalTime + " seconds\n"
-            + "Time Utilized per Question: " + timeUtilized + " seconds";
+            + "Total Time for the Test: " + totalTime + " seconds\n";
 
     JOptionPane.showMessageDialog(null, resultMessage); // Change the argument to null
 }
