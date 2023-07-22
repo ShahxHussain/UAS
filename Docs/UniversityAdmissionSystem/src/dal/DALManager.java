@@ -218,6 +218,7 @@ public int getNotifiedStudentsCount() {
         if (resultSet.next()) {
             count = resultSet.getInt(1);
         }
+        
 
         resultSet.close();
         statement.close();

@@ -23,9 +23,11 @@ public class notifyStudent extends javax.swing.JFrame {
     public notifyStudent() {
         initComponents();
         IConnection connectionProvider = new SQLConnection("jdbc:sqlserver://localhost:1433;databaseName=universityadmissionsystem;trustServerCertificate=true;", "sa", "123456");
-        DALManager dalManager = new DALManager(connectionProvider);
         StudentModel model = new StudentModel();
+        DALManager dalManager = new DALManager(connectionProvider);
         controller = new notifyStudentController(dalManager, model);
+        
+        
     }
 
     
@@ -235,7 +237,7 @@ public class notifyStudent extends javax.swing.JFrame {
 
         // Start the timer countdown
         timerRunning = true;
-        timerCount = 12; 
+        timerCount = 20;
         startTimer();
     } else {
         // Timer is running, show the countdown
